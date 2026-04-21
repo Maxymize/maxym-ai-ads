@@ -1,0 +1,34 @@
+{
+  "name": "maxym-plugins",
+  "owner": {
+    "name": "Maximilian Giurastante",
+    "email": "info@maxymizebusiness.com"
+  },
+  "metadata": {
+    "description": "Paid advertising plugins for Claude Code — strategy, creative generation, and multi-platform audit.",
+    "version": "1.0.00"
+  },
+  "plugins": [
+    {
+      "name": "maxym-ai-ads",
+      "source": ".",
+      "description": "Unified paid advertising skill: strategy, creative, multi-platform audit, and reporting. 30 sub-skills, 15 subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
+      "version": "1.0.00",
+      "category": "marketing",
+      "tags": [
+        "advertising",
+        "paid-ads",
+        "google-ads",
+        "meta-ads",
+        "linkedin-ads",
+        "tiktok-ads",
+        "microsoft-ads",
+        "youtube-ads",
+        "apple-ads",
+        "ppc",
+        "cro",
+        "ad-audit"
+      ]
+    }
+  ]
+}

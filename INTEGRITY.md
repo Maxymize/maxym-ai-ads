@@ -2,13 +2,22 @@
 
 Automated checks performed before release.
 
+## Structure
+
+- ✓ Plugin manifest at `.claude-plugin/plugin.json`
+- ✓ Marketplace manifest at `.claude-plugin/marketplace.json`
+- ✓ Orchestrator skill at `skills/ads/SKILL.md`
+- ✓ 30 sub-skills at `skills/ads-*/SKILL.md`
+- ✓ 15 subagents at `agents/*.md`
+
 ## Lint
 
-- ✓ Every `SKILL.md` has valid YAML frontmatter with both `name:` and `description:` fields (30 sub-skills + 1 orchestrator = 31 files)
+- ✓ Every `SKILL.md` has valid YAML frontmatter with both `name:` and `description:` fields (31 files total: 1 orchestrator + 30 sub-skills)
+- ✓ `plugin.json` and `marketplace.json` are valid JSON
 
 ## Router Coverage
 
-- ✓ All 29 sub-skills under `skills/ads-*/` are referenced by `ads/SKILL.md`
+- ✓ All 30 sub-skills under `skills/ads-*/` are referenced by `skills/ads/SKILL.md`
 
 ## Agent Referencing
 
@@ -18,11 +27,11 @@ Automated checks performed before release.
 
 | Artifact | Count |
 |---|---:|
-| Sub-skills (`skills/ads-*/`) | 30 |
+| Skills under `skills/` (orchestrator + sub-skills) | 31 |
 | Subagents (`agents/*.md`) | 15 |
 | Industry strategy templates (`skills/ads-plan/assets/*.md`) | 12 |
-| RAG reference files (`ads/references/*.md`) | 25 |
-| RAG reference files (`skills/references/*.md`, mirror) | 25 |
+| RAG reference files (`skills/ads/references/*.md`) | 25 |
+| Research source files (`skills/ads/research-sources/*.md`) | 6 |
 | Python scripts (`scripts/*.py`) | 7 |
 
 ## Branding Sweep
@@ -31,10 +40,15 @@ Automated checks performed before release.
 
 ## Install Script Paths
 
-- ✓ `ads/SKILL.md`, `ads/references/`, `agents/`, `scripts/`, `requirements.txt` all present
+- ✓ `skills/ads/SKILL.md`, `skills/ads/references/`, `agents/`, `scripts/`, `requirements.txt` all present
 - ✓ `install.sh` and `uninstall.sh` are executable (`chmod +x`)
+
+## Plugin Installability
+
+- ✓ Installable as a standalone skill bundle via `./install.sh`
+- ✓ Installable as a Claude Code plugin via `/plugin marketplace add Maxymize/maxym-ai-ads` + `/plugin install maxym-ai-ads@maxym-plugins`
 
 ## Commit Hygiene
 
-- ✓ 6 atomic commits, one per build phase
+- ✓ Atomic commits, one per build phase
 - ✓ Every commit authored by Maximilian Giurastante `<info@maxymizebusiness.com>`

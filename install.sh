@@ -32,31 +32,22 @@ main() {
 
     SRC="${TEMP_DIR}/maxym-ai-ads"
 
-    # Copy main orchestrator + references
-    echo "→ Installing orchestrator..."
-    cp "${SRC}/ads/SKILL.md" "${SKILL_DIR}/SKILL.md"
-    cp "${SRC}/ads/references/"*.md "${SKILL_DIR}/references/" 2>/dev/null || true
-
-    # Copy research-sources if present
-    if [ -d "${SRC}/ads/research-sources" ]; then
-        mkdir -p "${SKILL_DIR}/research-sources"
-        cp "${SRC}/ads/research-sources/"*.md "${SKILL_DIR}/research-sources/" 2>/dev/null || true
-    fi
-
-    # Copy sub-skills (29 directories under skills/ excluding 'references')
-    echo "→ Installing 29 sub-skills..."
+    # Copy every sub-skill under skills/ (including the 'ads' orchestrator)
+    echo "→ Installing orchestrator + 29 sub-skills..."
     for skill_dir in "${SRC}/skills"/*/; do
         skill_name=$(basename "${skill_dir}")
-        [ "${skill_name}" = "references" ] && continue
         target="${HOME}/.claude/skills/${skill_name}"
         mkdir -p "${target}"
         cp "${skill_dir}SKILL.md" "${target}/SKILL.md"
 
-        # Copy assets (industry templates etc.) if they exist
-        if [ -d "${skill_dir}assets" ]; then
-            mkdir -p "${target}/assets"
-            cp "${skill_dir}assets/"*.md "${target}/assets/" 2>/dev/null || true
-        fi
+        # Copy references/ (for the 'ads' orchestrator), assets/ (industry templates),
+        # and research-sources/ if they exist.
+        for sub in references assets research-sources; do
+            if [ -d "${skill_dir}${sub}" ]; then
+                mkdir -p "${target}/${sub}"
+                cp "${skill_dir}${sub}/"*.md "${target}/${sub}/" 2>/dev/null || true
+            fi
+        done
     done
 
     # Copy agents

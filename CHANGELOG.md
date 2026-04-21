@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here. The format is loosely based on [Keep a Changelog](https://keepachangelog.com/) and this project adheres to semantic versioning where practical.
 
+## [1.0.01] — 2026-04-21
+
+### Changed
+- Restructured to Claude Code plugin layout: `ads/` orchestrator moved to `skills/ads/` so it is discoverable by the plugin loader
+- Added `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` — the project is now installable via `/plugin marketplace add Maxymize/maxym-ai-ads` + `/plugin install maxym-ai-ads@maxym-plugins`
+- `install.sh` / `install.ps1` simplified: single loop copies every skill (orchestrator + 30 sub-skills) and their optional `references/`, `assets/`, `research-sources/` directories
+- Removed redundant `skills/references/` mirror; references now live only under `skills/ads/references/`
+
 ## [1.0.00] — 2026-04-21
 
 ### Added

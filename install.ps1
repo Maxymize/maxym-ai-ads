@@ -43,29 +43,20 @@ function Main {
 
         $Src = "$TempDir\maxym-ai-ads"
 
-        # Copy main orchestrator + references
-        Write-Host "Installing orchestrator..."
-        Copy-Item "$Src\ads\SKILL.md" -Destination "$SkillDir\SKILL.md" -Force
-        Copy-Item "$Src\ads\references\*.md" -Destination "$SkillDir\references\" -Force
-
-        if (Test-Path "$Src\ads\research-sources") {
-            $rsDir = Join-Path $SkillDir "research-sources"
-            New-Item -ItemType Directory -Path $rsDir -Force | Out-Null
-            Copy-Item "$Src\ads\research-sources\*.md" -Destination "$rsDir\" -Force
-        }
-
-        # Copy sub-skills
-        Write-Host "Installing 29 sub-skills..."
-        Get-ChildItem "$Src\skills" -Directory | Where-Object { $_.Name -ne "references" } | ForEach-Object {
+        # Copy every sub-skill under skills/ (including the 'ads' orchestrator)
+        Write-Host "Installing orchestrator + 29 sub-skills..."
+        Get-ChildItem "$Src\skills" -Directory | ForEach-Object {
             $TargetDir = Join-Path $env:USERPROFILE ".claude\skills\$($_.Name)"
             New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
             Copy-Item (Join-Path $_.FullName "SKILL.md") -Destination "$TargetDir\SKILL.md" -Force
 
-            $AssetsDir = Join-Path $_.FullName "assets"
-            if (Test-Path $AssetsDir) {
-                $TargetAssets = Join-Path $TargetDir "assets"
-                New-Item -ItemType Directory -Path $TargetAssets -Force | Out-Null
-                Copy-Item "$AssetsDir\*.md" -Destination "$TargetAssets\" -Force
+            foreach ($sub in @("references", "assets", "research-sources")) {
+                $SubDir = Join-Path $_.FullName $sub
+                if (Test-Path $SubDir) {
+                    $TargetSub = Join-Path $TargetDir $sub
+                    New-Item -ItemType Directory -Path $TargetSub -Force | Out-Null
+                    Copy-Item "$SubDir\*.md" -Destination "$TargetSub\" -Force -ErrorAction SilentlyContinue
+                }
             }
         }
 

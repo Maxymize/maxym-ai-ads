@@ -43,6 +43,17 @@ One orchestrator, **30 sub-commands**, 15 parallel subagents, 25 RAG reference f
 
 ## Installation
 
+### Plugin install (recommended)
+
+From inside Claude Code:
+
+```shell
+/plugin marketplace add Maxymize/maxym-ai-ads
+/plugin install maxym-ai-ads@maxym-plugins
+```
+
+This registers `maxym-ai-ads` as a native Claude Code plugin with namespaced skills (for example, `/maxym-ai-ads:ads`), auto-updates via `/plugin marketplace update`, and version tracking.
+
 ### One-command install (macOS / Linux)
 
 ```bash
@@ -65,7 +76,7 @@ cd maxym-ai-ads
 .\install.ps1          # Windows PowerShell
 ```
 
-The installer copies the `/ads` orchestrator, 29 sub-skills, 15 subagents, 25 reference files, 11 industry templates, and Python helper scripts into `~/.claude/skills/` and `~/.claude/agents/`, then runs `pip install` for the Python dependencies.
+The installer copies the `/ads` orchestrator, 30 sub-skills, 15 subagents, 25 reference files, 11 industry templates, and Python helper scripts into `~/.claude/skills/` and `~/.claude/agents/`, then runs `pip install` for the Python dependencies.
 
 > If your clone lives at a different GitHub path, set `MAXYM_ADS_REPO_URL` before running the installer.
 

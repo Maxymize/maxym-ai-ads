@@ -19,3 +19,6 @@ ADS-*.md
 ad-assets/
 brand-profile.json
 campaign-brief.md
+
+# Internal planning docs (not part of the public release)
+docs/

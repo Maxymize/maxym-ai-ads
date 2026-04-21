@@ -46,19 +46,19 @@ One orchestrator, **30 sub-commands**, 15 parallel subagents, 25 RAG reference f
 ### One-command install (macOS / Linux)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/MAXYMIZE-BUSINESS/maxym-ai-ads/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Maxymize/maxym-ai-ads/main/install.sh | bash
 ```
 
 ### One-command install (Windows PowerShell)
 
 ```powershell
-irm https://raw.githubusercontent.com/MAXYMIZE-BUSINESS/maxym-ai-ads/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Maxymize/maxym-ai-ads/main/install.ps1 | iex
 ```
 
 ### Manual install
 
 ```bash
-git clone https://github.com/MAXYMIZE-BUSINESS/maxym-ai-ads.git
+git clone https://github.com/Maxymize/maxym-ai-ads.git
 cd maxym-ai-ads
 ./install.sh           # macOS / Linux
 # or
@@ -262,10 +262,10 @@ If no provider is configured, `/ads generate` and `/ads photoshoot` print setup 
 
 ```bash
 # macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/MAXYMIZE-BUSINESS/maxym-ai-ads/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Maxymize/maxym-ai-ads/main/uninstall.sh | bash
 
 # Windows PowerShell
-irm https://raw.githubusercontent.com/MAXYMIZE-BUSINESS/maxym-ai-ads/main/uninstall.ps1 | iex
+irm https://raw.githubusercontent.com/Maxymize/maxym-ai-ads/main/uninstall.ps1 | iex
 ```
 
 This removes the `ads` orchestrator, every `ads-*` sub-skill, every `audit-*` / `creative-*` / `strategy-*` subagent, and the installed reference and script files.

@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 function Main {
     $SkillDir = Join-Path $env:USERPROFILE ".claude\skills\ads"
     $AgentDir = Join-Path $env:USERPROFILE ".claude\agents"
-    $RepoUrl = if ($env:MAXYM_ADS_REPO_URL) { $env:MAXYM_ADS_REPO_URL } else { "https://github.com/MAXYMIZE-BUSINESS/maxym-ai-ads" }
+    $RepoUrl = if ($env:MAXYM_ADS_REPO_URL) { $env:MAXYM_ADS_REPO_URL } else { "https://github.com/Maxymize/maxym-ai-ads" }
 
     Write-Host "============================================================"
     Write-Host "   maxym-ai-ads - installer"

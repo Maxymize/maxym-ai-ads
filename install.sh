@@ -7,7 +7,7 @@ set -euo pipefail
 main() {
     SKILL_DIR="${HOME}/.claude/skills/ads"
     AGENT_DIR="${HOME}/.claude/agents"
-    REPO_URL="${MAXYM_ADS_REPO_URL:-https://github.com/MAXYMIZE-BUSINESS/maxym-ai-ads}"
+    REPO_URL="${MAXYM_ADS_REPO_URL:-https://github.com/Maxymize/maxym-ai-ads}"
 
     echo "════════════════════════════════════════════════════════════"
     echo "   maxym-ai-ads — installer"

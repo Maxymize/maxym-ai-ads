@@ -21,4 +21,6 @@ brand-profile.json
 campaign-brief.md
 
 # Internal planning docs (not part of the public release)
-docs/
+# docs/ is tracked, but the internal build plan is not
+docs/maxym-ai-ads-build-plan.md
+docs/*-build-plan.md

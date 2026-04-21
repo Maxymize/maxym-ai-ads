@@ -82,6 +82,14 @@ The installer copies the `/ads` orchestrator, 30 sub-skills, 15 subagents, 25 re
 
 ---
 
+## 🗺️ Zero-to-Sales Blueprint
+
+Don't know where to start? Read the **[Zero-to-Sales Blueprint](docs/BLUEPRINT-ZERO-TO-SALES.md)** — the exact command sequence to go from "I have a product" to "my ads print money" in 8–12 days of prep, with zero wasted budget.
+
+The blueprint covers all 5 phases: Reality Check → Intelligence → Budget/Funnel → Creative → Launch → Optimize, with flowcharts, decision gates, and the 3 sacred rules of paid ads optimization.
+
+---
+
 ## Quick Start
 
 ```bash

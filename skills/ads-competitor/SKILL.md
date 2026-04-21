@@ -1,197 +1,384 @@
 ---
 name: ads-competitor
-description: "Competitor ad intelligence analysis across Google, Meta, LinkedIn, TikTok, Microsoft, and Apple Ads. Analyzes competitor ad copy, creative strategy, keyword targeting, estimated spend, and identifies competitive gaps and opportunities. Use when user says competitor ads, ad spy, competitive analysis, competitor PPC, or ad intelligence."
+description: "Competitor ad intelligence across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads. Combines cross-platform reconnaissance (ad libraries, auction insights, platform signals, estimated spend) with strategic gap analysis and a 'beat the competition' playbook — positioning statement, ad angles, creative differentiation plan, targeting exploitation, offer counter-strategy, plus a swipe file template for ongoing tracking. Use when user says competitor ads, ad spy, competitive analysis, competitor PPC, or ad intelligence."
 user-invokable: false
 ---
 
-<!-- Updated: 2026-04-13 | v1.5 -->
+<!-- maxym-ai-ads | ads-competitor unified v1.0 -->
 
 # Competitor Ad Intelligence
 
+This skill produces a full competitive intelligence report in two linked sections:
+
+1. **Competitor Ad Intelligence** — platform-by-platform reconnaissance across every major ad library and data source. Who is active, where, with what creative, and what it is costing them.
+2. **Gap Analysis & Opportunities** — the strategic output: what competitors are *not* doing, a positioning statement the business can own, 3-5 specific ad angles that exploit those gaps, a creative differentiation plan, targeting exploitation, offer counter-strategy, and a swipe-file template for continuous tracking.
+
+The final deliverable is `ADS-COMPETITORS.md` in the current working directory (plus an optional `COMPETITIVE-GAPS.md` standalone gap extract when `--gaps-only` is passed).
+
+---
+
 ## Process
 
-1. Identify target competitors (from user input or industry analysis)
-2. Read `ads/references/benchmarks.md` for industry CPC/CTR/CVR baselines
-3. Research competitor ad presence across platforms
-4. Analyze ad copy, creative, and messaging themes
-5. Estimate competitor spend and keyword strategy
-6. Identify gaps and opportunities
-7. Generate competitive intelligence report
+1. Fetch the target business website with `WebFetch` to anchor positioning
+2. Identify 3-5 competitors (2-3 direct, 1 aspirational, 1 indirect/emerging)
+3. Read `ads/references/benchmarks.md` for industry CPC/CTR/CVR baselines
+4. Run the Competitor Ad Intelligence section (reconnaissance)
+5. Run the Gap Analysis & Opportunities section (strategy)
+6. Assemble the `ADS-COMPETITORS.md` output
 
-## Data Sources
+---
 
-### Free Intelligence Sources
+## Competitor Ad Intelligence
+
+### Competitor Identification
+
+**Search queries to run (via WebSearch):**
+```
+"[business type] [city/region]"       — local competitors
+"[business name] vs"                  — direct comparison
+"[business name] alternatives"        — substitute competitors
+"[business name] competitors"         — industry analysis
+"best [product/service category]"     — category leaders
+"[product/service] reviews"           — who appears on review sites
+```
+
+**Competitor Categories**
+| Category | Definition | Why It Matters |
+|---|---|---|
+| Direct | Same product, same market, same audience | Same customers and keywords |
+| Indirect | Different product, same problem | Same budget and attention |
+| Aspirational | Larger companies in the same space | Proven ad strategies to adapt |
+| Emerging | Newer companies gaining traction | Innovative approaches worth studying |
+
+Select 3-5: 2-3 direct, 1 aspirational, 1 indirect/emerging.
+
+### Platform Presence Detection
+
+For each competitor, determine which ad platforms they likely run.
+
+| Signal | Platform | How to Check |
+|---|---|---|
+| Facebook pixel on website | Meta | Page source: `fbq` or `fb-pixel` |
+| Google Ads tag on website | Google Ads | Page source: `gtag` / `googleads` |
+| LinkedIn Insight Tag | LinkedIn Ads | Page source: `_linkedin_partner_id` |
+| TikTok pixel | TikTok Ads | Page source: `ttq` |
+| UTM parameters in links | Multiple | Check `utm_source` on their social links |
+| Meta Ad Library results | Active Meta advertiser | Search their page name |
+| Branded search ads | Google Search | Google their brand — do ads appear? |
+| Shopping results | Google Shopping | Search their product names |
+| Sponsored content on LinkedIn | LinkedIn Ads | Check their company page |
+| Pre-roll / in-stream ads | YouTube | Notice if ads play before their niche's videos |
+
+### Data Sources
+
 | Source | Platform | What You Can Find |
-|--------|----------|------------------|
+|---|---|---|
 | Google Ads Transparency Center | Google | Active ads, formats, geo targeting |
 | Meta Ad Library | Meta/Instagram | All active ads, creative, copy, spend range |
 | LinkedIn Ad Library | LinkedIn | Active ads from company pages |
-| TikTok Creative Center | TikTok | Top ads, trending creative, hashtags |
-| Microsoft Ads | Microsoft | Limited: use auction insights |
-| Apple Ads (App Store) | Apple | Search tab ads, Today tab ads, product page creatives |
+| TikTok Creative Center 2.0 | TikTok | Top ads, trending creative, hashtags, Shop activity |
+| Microsoft Ads Auction Insights | Microsoft | Impression share, overlap, position data |
+| Apple Ads (App Store) | Apple | Search tab, Today tab, CPP variants |
 
-### Google Ads Auction Insights
-Available from the user's own Google Ads account:
-- Impression share vs competitors
-- Overlap rate (how often you compete)
-- Outranking share (who wins more often)
-- Top of page rate and absolute top of page rate
-- Available for Search and Shopping campaigns
+**Google Ads Auction Insights** (from the user's own account): impression share vs competitors, overlap rate, outranking share, top-of-page rate, absolute top of page rate. Available on Search and Shopping.
 
-### Platform-Specific Research
+### 2025-2026 Platform Intelligence Updates
 
-#### Google
-- Ads Transparency Center: search by advertiser name or domain
-- Search for competitor brand terms to see their ads live
-- Auction Insights for impression share comparison
+**Meta** — Andromeda creative clustering (Oct 2025): ads with >60% similarity are suppressed, so measure *genuine* conceptual diversity. Advantage+ Sales replaced ASC as the unified shopping campaign type — check competitor adoption.
 
-#### Meta
-- Ad Library: filter by advertiser, country, platform (FB/IG), date range
-- Shows creative (image/video), ad copy, active dates
-- Shows platform placement (Facebook, Instagram, Audience Network)
+**Google** — Demand Gen fully replaced Video Action Campaigns (April 2026). AI Max for Search delivers a ~14% conversion lift — check competitor adoption via Transparency Center. Expanded Transparency Center gives richer history, formats, and region targeting data.
 
-#### LinkedIn
-- Ad Library: search by company name
-- Shows Sponsored Content, Message Ads
-- Limited data compared to Meta Ad Library
+**TikTok** — Creative Center 2.0 with enhanced industry benchmarking and objective/format filtering. Symphony AI (2025) generates creative at scale — assess whether competitors rely on Symphony vs original. Review TikTok Shop tabs, catalogs, reviews, and live shopping.
 
-#### TikTok
-- Creative Center 2.0: top-performing ads by industry, country, objective with enhanced filtering
-- Hashtag analytics: trending sounds and hashtags
-- TikTok Shop: review competitor storefronts, catalogs, reviews, and live shopping
-- No per-advertiser library; use Creative Center for industry trends
+**LinkedIn** — Thought Leader Ads expansion (March 2025) now supports non-employee creators. CRM integration (June 2025) enables more precise audience matching — competitors with CRM integration show tighter targeting patterns.
 
-#### Apple Ads
-- App Store search: search competitor brand terms to see their Search tab ads
-- Today tab ads: check competitor presence on App Store homepage
-- Custom Product Pages: analyze competitor CPP variants via App Store listings
+**Microsoft** — Copilot ads in conversations (new placement in MS Copilot chat). CTV inventory via Netflix, Max, Hulu, Roku — assess competitor presence on connected TV.
 
-## 2025-2026 Platform Updates
+**Apple Ads** — Rebranded from "Apple Search Ads" (April 2025). Custom Product Pages let competitors run different page variants per ad group — analyze the CPP strategy. Maximize Conversions (GA Feb 2026) is the new AI auto-bidder — check adoption.
 
-### Meta
-- **Andromeda creative clustering** (launched October 2025): ads with >60% similarity are suppressed. Competitor creative analysis must assess genuine conceptual diversity, not just volume
-- **Advantage+ Sales** (renamed from ASC): unified shopping campaign type. Check if competitors are running Advantage+ Sales vs manual campaigns
+> For live programmatic access to competitor data, see `ads/references/mcp-integration.md`.
 
-### Google
-- **Demand Gen replaced VAC** (April 2026): Video Action Campaigns fully deprecated. Analyze competitor Demand Gen adoption (multi-format video+image)
-- **AI Max for Search**: AI-powered campaign type with 14% conversion lift. Check competitor adoption via Ads Transparency Center
-- **Expanded Ads Transparency Center**: richer data on competitor ad history, formats, and targeting regions
+### Ad Copy Analysis Framework
 
-### TikTok
-- **Creative Center 2.0**: enhanced industry benchmarking, top ads filtering by objective and format
-- **Symphony AI variations** (2025): AI-generated creative at scale. Assess whether competitors use Symphony-generated vs original content
-- **TikTok Shop competitor analysis**: review competitor Shop tabs, product catalogs, reviews, and live shopping activity
-
-### LinkedIn
-- **Thought Leader Ads expansion** (March 2025): now supports non-employee creators and influencers. Check if competitors sponsor external thought leaders
-- **CRM integration** (June 2025): enhanced audience matching. Competitors with CRM integration show more precise targeting patterns
-
-### Microsoft
-- **Copilot ads in conversations**: new placement in Microsoft Copilot chat. Check if competitors appear in conversational ad placements
-- **CTV inventory**: ads on Netflix, Max, Hulu, and Roku via Microsoft Advertising. Assess competitor presence on connected TV
-
-### Apple Ads
-- **Rebranded to "Apple Ads"** (April 2025): formerly Apple Search Ads. All references updated
-- **Custom Product Page (CPP) competitive analysis**: competitors can run different product page variants per ad group. Analyze CPP strategies
-- **Maximize Conversions bidding**: AI auto-bidder (GA February 2026). Check if competitors have adopted automated bidding
-
-> **MCP Integration**: For live API access to competitor data sources, see `ads/references/mcp-integration.md`.
-
-## Competitive Analysis Framework
-
-### 1. Ad Copy Analysis
 For each competitor, document:
-- **Headlines**: primary messages and value propositions
-- **CTAs**: what action they're driving (free trial, demo, buy now, learn more)
-- **Offers**: pricing, discounts, free shipping, trials
-- **Tone**: professional, casual, urgent, educational, emotional
-- **USPs**: unique selling propositions they emphasize
-- **Pain points**: customer problems they address
+- **Headlines** — primary messages and value propositions
+- **CTAs** — action driven (free trial, demo, buy now, learn more)
+- **Offers** — pricing, discounts, free shipping, trials
+- **Tone** — professional, casual, urgent, educational, emotional
+- **USPs** — unique selling propositions
+- **Pain points** — customer problems they address
 
-### 2. Creative Strategy Analysis
-- **Formats used**: image, video, carousel, collection, document
-- **Visual style**: photography, illustration, UGC, stock, branded
-- **Video approach**: studio quality vs UGC vs animated
-- **Creative volume**: how many active ads (indicator of testing velocity)
-- **Refresh frequency**: how often new creatives appear
+### Creative Strategy Analysis
+- **Formats** — image, video, carousel, collection, document
+- **Visual style** — photography, illustration, UGC, stock, branded
+- **Video approach** — studio vs UGC vs animated
+- **Creative volume** — number of active ads (testing velocity signal)
+- **Refresh frequency** — how often new creatives appear
 
-### 3. Messaging Themes
-Categorize competitor messaging into themes:
+### Creative Style Taxonomy
+
+| Style | Description | When It Works |
+|---|---|---|
+| UGC | Selfie-style, testimonial videos, unpolished | E-commerce, DTC, courses |
+| Polished/Professional | Studio-shot, branded, high production | B2B, SaaS, luxury, services |
+| Educational/Tutorial | How-to, tips, demos | SaaS, tools — builds authority |
+| Meme/Trend-Based | Current trends, humor | Consumer brands, younger audiences |
+| Data/Stat-Driven | Infographics, charts | B2B, SaaS, finance — credibility |
+| Comparison/vs | Side-by-side with alternatives | Challenger brands |
+| Testimonial-Led | Customer stories front and center | High-trust industries |
+| Problem-Agitation | Dramatize pain before revealing solution | Emotional/urgent services |
+
+### Messaging Theme Matrix
+
 | Theme | Competitor A | Competitor B | Your Brand |
-|-------|-------------|-------------|------------|
+|---|---|---|---|
 | Price/Value | ✅ Primary | ⚠️ Secondary | ? |
 | Quality/Premium | ❌ | ✅ Primary | ? |
 | Speed/Convenience | ⚠️ Secondary | ❌ | ? |
 | Trust/Authority | ✅ Primary | ✅ Primary | ? |
 | Innovation | ❌ | ⚠️ Secondary | ? |
 
-### 4. Keyword Intelligence (Google/Microsoft/Apple Ads)
-- Brand keyword bidding: are competitors bidding on your brand?
-- Keyword overlap: which non-brand terms do you both target?
-- Keyword gaps: terms competitors rank for that you don't target
-- Match type strategy: estimated match types from ad triggers
+### Keyword Intelligence (Google/Microsoft/Apple)
+- Brand keyword bidding — are competitors bidding on your brand?
+- Keyword overlap — non-brand terms both target
+- Keyword gaps — terms they rank for that you do not target
+- Match type strategy — inferred from ad triggers
 
-### 5. Spend Estimation
+### Targeting Reverse-Engineering
+
+| Signal on Their Page/Ads | Inferred Targeting |
+|---|---|
+| Industry-specific language | Industry / vertical targeting |
+| City/region mentioned | Geo-targeting |
+| Job titles called out | LinkedIn job title targeting |
+| Company size references | Firmographic targeting |
+| Income/lifestyle references | Demographic + income targeting |
+| Problem-specific language | Interest / in-market targeting |
+| "As seen in [publication]" | Publication-reader retargeting |
+| Multiple language versions | International / multilingual |
+| Mobile-specific CTAs ("Call now") | Mobile device targeting |
+| Time-sensitive offers | Day-parting / scheduling |
+
+### Spend Estimation
+
 - Meta Ad Library shows spend ranges for political/social ads
-- Google Auction Insights + impression share = directional spend estimate
-- Third-party tools (SEMrush, SpyFu) for more precise estimates
-- Manual estimation formula:
+- Google Auction Insights + impression share → directional estimate
+- Third-party tools (SpyFu, SEMrush, AdBeat, Pathmatics) for precision
+- Manual formula:
   ```
   Estimated Monthly Spend = Impressions × CPM / 1000
-  or
-  Estimated Monthly Spend = Clicks × Estimated CPC
+                          = Clicks × Estimated CPC
   ```
 
-## Gap & Opportunity Identification
+---
 
-### Platform Gaps
-- Which platforms are competitors NOT on? (opportunity to own)
-- Which platforms are they underspending on? (opportunity to outspend)
+## Gap Analysis & Opportunities
 
-### Messaging Gaps
-- What customer pain points are NO competitors addressing?
-- What value propositions are underrepresented in the market?
-- What content formats are competitors not using?
+This is the strategic payoff of the skill. Everything above is input for this section.
 
-### Audience Gaps
-- What demographics/segments are competitors not targeting?
-- What geographic markets are underserved?
-- What funnel stages are competitors neglecting?
+### Gap Categories
 
-### Creative Gaps
-- What ad formats are competitors not using? (video, UGC, Spark Ads)
-- What creative styles are missing from the competitive landscape?
-- What platform-specific features are competitors not leveraging?
+| Gap Type | How to Identify | Opportunity |
+|---|---|---|
+| Messaging | All competitors say the same thing | Own a unique angle no one claims |
+| Audience | Competitors target the same broad audience | Target a niche they ignore |
+| Platform | Competitors cluster on Meta/Google | First-mover on LinkedIn/TikTok/YouTube/CTV |
+| Creative | All static images | Stand out with video/UGC/Reels |
+| Offer | Same free trial / 10% off | Guarantee, bundle, free assessment |
+| Content | No educational content | Build authority with content-first ads |
+| Trust | No social proof / reviews in ads | Lead with overwhelming proof |
+| Speed | Slow LPs or complex funnels | Win on simplicity and load time |
+| Objection | No one addresses the top objection | Lead with the elephant in the room |
+| Format | No long-form content / webinars / series | Build a content moat |
 
-## Competitive Response Strategy
+### Gap Analysis Template
+```
+| Gap Type | What Competitors Do | What's Missing | Your Opportunity |
+|---|---|---|---|
+| Messaging | [pattern] | [what no one says] | [claim to own] |
+| Audience | [who they all target] | [who they ignore] | [niche to own] |
+| Platform | [where they advertise] | [unused platform] | [first-mover] |
+| Creative | [their approach] | [unused format] | [how to stand out] |
+| Offer | [standard offers] | [missing offer type] | [differentiated offer] |
+| Trust | [proof strategy] | [proof they lack] | [credibility edge] |
+```
 
-### When Competitors Bid on Your Brand
+### "Beat the Competition" Strategy
+
+**1. Positioning Statement**
+```
+"While [competitors] focus on [what they all say], [Your Business] is the only
+[business type] that [unique differentiator], which means [customer benefit]."
+```
+
+**2. Ad Angle Recommendations (3-5)**
+```
+ANGLE 1: [Gap-based angle]
+- Hook: "[Specific hook text]"
+- Body: "[Key message]"
+- CTA: "[Specific CTA]"
+- Why this beats competitors: [Explanation]
+```
+
+**3. Creative Differentiation Plan**
+```
+IF competitors use [format]  → YOU use [different format]  because [reason]
+IF competitors' tone is [X]  → YOUR tone is [Y]            because [reason]
+IF competitors' ads feel [F] → YOUR ads feel [G]           because [reason]
+```
+
+**4. Targeting Exploitation**
+```
+AUDIENCE GAPS TO TARGET:
+- [Underserved segment]: [Why competitors miss them] — [How to reach them]
+
+KEYWORD OPPORTUNITIES:
+- [Competitor] + "alternative" — bid on competitor brand terms (know the rules)
+- [Problem keyword competitors don't bid on] — uncontested intent
+- [Long-tail competitors ignore] — low CPC, high intent
+```
+
+**5. Offer Differentiation**
+```
+COMPETITOR OFFERS            →  YOUR COUNTER-OFFER
+[Competitor 1]: [their offer] →  [differentiated offer]
+[Competitor 2]: [their offer] →  [how yours is better]
+[Competitor 3]: [their offer] →  [what you offer that they don't]
+```
+
+### Competitive Response Playbook
+
+**When competitors bid on your brand**
 - Always run brand campaigns to defend (low CPC, high CTR)
-- Dynamic keyword insertion to show your brand prominently
+- Dynamic keyword insertion
 - Sitelinks to key pages (pricing, features, reviews)
-- Ad copy that emphasizes unique differentiators
-- Consider bidding on competitor brand terms (know the rules)
+- Copy that emphasizes unique differentiators
+- Consider bidding on their brand terms (respect platform rules)
 
-### When You're Outspent
-- Focus on efficiency over volume (better targeting, creative, landing pages)
+**When you are outspent**
+- Focus on efficiency over volume (targeting, creative, LP)
 - Target long-tail keywords competitors ignore
 - Use Exact match for precision (less waste)
 - Double down on retargeting (lower CPA than prospecting)
 - Compete on creative quality, not budget
 
-## Output
+---
 
-### Deliverables
-- `COMPETITOR-INTELLIGENCE-REPORT.md`: Full competitive analysis
-  - Per-competitor ad presence summary
-  - Ad copy and messaging analysis
-  - Creative strategy comparison
-  - Estimated spend levels
-  - Keyword overlap and gaps
-- `COMPETITIVE-GAPS.md`: Opportunities identified from competitor analysis
-  - Platform gaps
-  - Messaging opportunities
-  - Audience segments to target
-  - Creative format opportunities
-- Strategic recommendations for competitive positioning
-- Priority actions to gain competitive advantage
+## Competitor Ad Swipe File Template
+
+```markdown
+## Competitor Ad Swipe File
+
+### [Competitor Name]
+**Last Updated:** [Date]
+**Platforms Active:** [List]
+**Estimated Monthly Ad Spend:** [Low/Medium/High based on ad volume]
+
+#### Ad Examples
+**Ad 1**
+- Platform: [Meta / Google / LinkedIn / TikTok]
+- Format: [Static / Video / Carousel / Story]
+- Hook: "[First line of ad copy]"
+- Body: "[Key message summary]"
+- CTA: "[CTA text]"
+- Landing Page: [URL]
+- Offer: [What they're offering]
+- Creative Style: [UGC / Polished / Educational / etc.]
+- Estimated Run Time: [How long active]
+- Notes: [What works, what doesn't, what to learn]
+
+#### Tracking Notes
+- Frequency of new ads: [Weekly / Bi-weekly / Monthly / Rarely]
+- Creative refresh pattern
+- Seasonal patterns
+- Offer change cadence
+```
+
+---
+
+## Competitive Monitoring
+
+**Free Tools**
+
+| Tool | What It Does | Cadence |
+|---|---|---|
+| Meta Ad Library | All active Meta/IG ads per page | Monthly |
+| Google Ads Transparency Center | Verified advertisers, ad history | Quarterly |
+| LinkedIn Ad Library | Sponsored content per company | Monthly |
+| SimilarWeb (free tier) | Traffic estimates and sources | Monthly |
+| BuiltWith | Tech stack + pixel detection | One-off / ad-hoc |
+| Social Blade | Social growth tracking | Monthly |
+| Google Alerts | Brand mention monitoring | Continuous |
+
+**Paid Tools (recommended at $5K+/mo ad spend)**
+
+| Tool | What It Does | Price Range |
+|---|---|---|
+| SpyFu | Competitor keyword + PPC intelligence | $39-$79/mo |
+| SEMrush | Comprehensive competitor ad analysis | $130-$500/mo |
+| Ahrefs | Organic + paid search intelligence | $99-$999/mo |
+| AdBeat | Display ad intelligence | $249+/mo |
+| Pathmatics | Cross-platform ad spend estimates | Enterprise |
+
+---
+
+## Output Template (`ADS-COMPETITORS.md`)
+
+```markdown
+# Competitive Ad Intelligence: [Business Name]
+
+**Generated:** [Date]
+**Target Business:** [Name + URL]
+**Industry:** [Industry/Niche]
+**Competitors Analyzed:** [Number]
+
+## Executive Summary
+[3-5 sentences: key findings, biggest opportunity, recommended strategy]
+
+## Competitor Overview
+| Competitor | URL | Type | Platforms | Ad Activity | Threat Level |
+|---|---|---|---|---|---|
+
+## Detailed Competitor Analysis
+### Competitor 1: [Name]
+  - Platform Presence
+  - Messaging & Positioning
+  - Landing Page Analysis
+  - Creative Approach
+  - Targeting Strategy (inferred)
+  - Strengths & Weaknesses
+### Competitor 2 / 3 / …
+
+## Positioning Gap Analysis
+[Gap table with industry pattern and your opportunity]
+
+## Beat the Competition Strategy
+- Your Competitive Positioning (statement)
+- Recommended Ad Angles (3-5)
+- Creative Differentiation Plan
+- Targeting Opportunities
+- Offer Strategy
+
+## Competitor Ad Swipe File
+[Swipe file populated with discovered ads]
+
+## Monitoring Plan
+[Tools and frequency for ongoing tracking]
+```
+
+---
+
+## Rules
+
+1. ALWAYS fetch the target business website first — know THEIR positioning before analyzing competitors
+2. ALWAYS identify at least 3 competitors — fewer than 3 is insufficient competitive context
+3. ALWAYS include the positioning gap analysis — this is the most valuable strategic output
+4. ALWAYS provide specific ad angle recommendations — not "be different" but exactly HOW
+5. ALWAYS include the swipe file template — users need a system for ongoing tracking
+6. ALWAYS search for competitor ads via Meta Ad Library and Google Ads Transparency Center
+7. NEVER make up competitor ad examples — only include what can be verified or reasonably inferred
+8. NEVER skip the "beat the competition" strategy — analysis without strategy is just data
+9. NEVER ignore indirect competitors — they reveal positioning opportunities direct rivals miss
+10. ALWAYS include monitoring recommendations — competitive intelligence is ongoing
+11. ALWAYS assess threat level per competitor — helps prioritize attention
+12. Output the complete intelligence report to `ADS-COMPETITORS.md` in the current working directory

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blueprint Report — {{COMPANY_NAME}}</title>
+<style>
+/* ============== RESET + BASE ============== */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0b0d18;
+  --bg-soft: #141729;
+  --surface: #1b1f37;
+  --surface-2: #242949;
+  --border: rgba(255,255,255,0.08);
+  --primary: #6e44ff;
+  --primary-soft: rgba(110,68,255,0.15);
+  --accent: #00e0b8;
+  --accent-soft: rgba(0,224,184,0.12);
+  --danger: #ff5470;
+  --warning: #ffb454;
+  --text: #e7e9f5;
+  --text-muted: #9ea3bd;
+  --text-dim: #676c88;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 18px 48px rgba(0,0,0,0.4);
+  --font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 15px;
+  min-height: 100vh;
+}
+
+/* ============== LAYOUT ============== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11,13,24,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+.nav-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.nav-brand { font-weight: 700; font-size: 16px; letter-spacing: -0.2px; }
+.nav-brand .dot { display:inline-block; width:8px; height:8px; background:var(--primary); border-radius:50%; margin-right:8px; vertical-align:middle; }
+.nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
+.nav-links a {
+  color: var(--text-muted); text-decoration: none; font-size: 13px;
+  padding: 6px 10px; border-radius: 6px; transition: all 0.15s;
+}
+.nav-links a:hover { color: var(--text); background: var(--surface); }
+
+/* ============== HERO ============== */
+.hero {
+  padding: 80px 0 60px;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(110,68,255,0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(0,224,184,0.15) 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; background: var(--primary-soft); border: 1px solid rgba(110,68,255,0.3);
+  border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+  color: #b8a3ff; text-transform: uppercase;
+}
+.hero h1 {
+  font-size: 52px; font-weight: 800; letter-spacing: -1.5px;
+  margin: 20px 0 12px; line-height: 1.08;
+}
+.hero .subtitle { color: var(--text-muted); font-size: 20px; margin-bottom: 32px; }
+.hero-meta {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px; padding: 24px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+}
+.meta-item .meta-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+.meta-item .meta-value { font-size: 16px; color: var(--text); font-weight: 600; margin-top: 4px; }
+
+/* ============== SCORECARDS ============== */
+.scorecards {
+  padding: 60px 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.score-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px; position: relative; overflow: hidden;
+}
+.score-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--primary);
+}
+.score-card.good::before { background: var(--accent); }
+.score-card.warn::before { background: var(--warning); }
+.score-card.bad::before  { background: var(--danger); }
+.score-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+.score-value { font-size: 56px; font-weight: 800; letter-spacing: -2px; margin: 12px 0 4px; line-height: 1; }
+.score-sub { font-size: 14px; color: var(--text-muted); }
+.progress-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 999px; margin-top: 20px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 999px; transition: width 0.6s ease; background: var(--primary); }
+.progress-fill.good { background: var(--accent); }
+.progress-fill.warn { background: var(--warning); }
+.progress-fill.bad  { background: var(--danger); }
+
+/* ============== SECTIONS ============== */
+.section { padding: 56px 0; border-top: 1px solid var(--border); }
+.section-head { margin-bottom: 36px; }
+.section-kicker { font-size: 12px; color: var(--primary); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.section-title { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+.section-desc { color: var(--text-muted); font-size: 16px; max-width: 720px; }
+
+/* ============== STRENGTHS & GAPS ============== */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+.box {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px;
+}
+.box h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.box.strengths h3 { color: var(--accent); }
+.box.gaps h3 { color: var(--warning); }
+.box ol { list-style: none; counter-reset: item; }
+.box ol li {
+  counter-increment: item; padding: 14px 0 14px 40px; position: relative;
+  border-top: 1px solid var(--border); line-height: 1.5;
+}
+.box ol li:first-child { border-top: none; }
+.box ol li::before {
+  content: counter(item); position: absolute; left: 0; top: 14px;
+  width: 28px; height: 28px; border-radius: 50%; background: var(--primary-soft);
+  color: var(--primary); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center;
+}
+.box.gaps ol li::before { background: rgba(255,180,84,0.15); color: var(--warning); }
+.box.strengths ol li::before { background: var(--accent-soft); color: var(--accent); }
+
+/* ============== PERSONAS GRID ============== */
+.personas { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.persona-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; transition: transform 0.2s, border-color 0.2s;
+}
+.persona-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+.persona-avatar {
+  width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: white;
+  margin-bottom: 16px;
+}
+.persona-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.persona-role { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+.persona-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-size: 11px; padding: 4px 10px; background: var(--primary-soft);
+  color: #b8a3ff; border-radius: 999px; font-weight: 500;
+}
+.persona-details { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); }
+
+/* ============== BUDGET ALLOCATION BARS ============== */
+.platform-allocation { display: flex; flex-direction: column; gap: 18px; }
+.alloc-row { display: flex; flex-direction: column; gap: 6px; }
+.alloc-head { display: flex; justify-content: space-between; font-size: 14px; }
+.alloc-name { font-weight: 600; }
+.alloc-value { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.alloc-bar { height: 10px; background: rgba(255,255,255,0.05); border-radius: 999px; overflow: hidden; }
+.alloc-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+
+/* ============== FUNNEL ============== */
+.funnel { display: flex; flex-direction: column; gap: 2px; max-width: 600px; margin: 0 auto; }
+.funnel-stage {
+  padding: 24px; background: var(--surface); border: 1px solid var(--border);
+  text-align: center; position: relative; border-radius: 4px;
+}
+.funnel-stage.tofu { max-width: 100%; }
+.funnel-stage.mofu { max-width: 80%; margin-left: auto; margin-right: auto; }
+.funnel-stage.bofu { max-width: 60%; margin-left: auto; margin-right: auto; }
+.funnel-stage.retargeting { max-width: 40%; margin-left: auto; margin-right: auto; background: var(--primary-soft); border-color: var(--primary); }
+.funnel-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 6px; }
+.funnel-text { font-size: 14px; color: var(--text); font-weight: 500; }
+
+/* ============== TABLES ============== */
+.table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; padding: 14px 18px; background: var(--surface-2); color: var(--text-muted);
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+td { padding: 14px 18px; border-top: 1px solid var(--border); }
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+.badge {
+  display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600;
+}
+.badge-green { background: var(--accent-soft); color: var(--accent); }
+.badge-yellow { background: rgba(255,180,84,0.15); color: var(--warning); }
+.badge-red { background: rgba(255,84,112,0.15); color: var(--danger); }
+.badge-purple { background: var(--primary-soft); color: #b8a3ff; }
+
+/* ============== CREATIVE SAMPLES ============== */
+.creative-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.creative-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px;
+  border-left: 3px solid var(--primary);
+}
+.creative-type { font-size: 11px; color: var(--primary); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; margin-bottom: 8px; }
+.creative-body { font-size: 14px; line-height: 1.5; color: var(--text); }
+
+/* ============== CHECKLIST ============== */
+.checklist { display: flex; flex-direction: column; gap: 16px; }
+.check-group { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.check-group h4 { font-size: 16px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.check-items { display: flex; flex-direction: column; gap: 8px; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px;
+  background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); cursor: pointer;
+  transition: background 0.15s;
+}
+.check-item:hover { background: rgba(255,255,255,0.05); }
+.check-item input { margin-top: 3px; cursor: pointer; accent-color: var(--primary); }
+.check-item label { cursor: pointer; font-size: 14px; line-height: 1.4; flex: 1; }
+.check-item.done label { text-decoration: line-through; color: var(--text-dim); }
+
+/* ============== ACTION PLAN TIMELINE ============== */
+.timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 860px) { .timeline { grid-template-columns: 1fr; } }
+.timeline-step {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; position: relative;
+}
+.timeline-step::before {
+  content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.timeline-month { font-size: 11px; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 4px; }
+.timeline-title { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+.timeline-step ul { list-style: none; }
+.timeline-step ul li { padding: 8px 0 8px 22px; font-size: 14px; color: var(--text-muted); position: relative; border-top: 1px solid var(--border); }
+.timeline-step ul li:first-child { border-top: none; }
+.timeline-step ul li::before { content: '→'; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+
+/* ============== FOOTER ============== */
+.footer {
+  padding: 60px 0 40px; border-top: 1px solid var(--border); margin-top: 60px;
+  text-align: center; color: var(--text-dim); font-size: 13px;
+}
+.footer a { color: var(--text-muted); text-decoration: none; }
+.footer a:hover { color: var(--text); }
+.footer-brand { font-weight: 700; color: var(--text); margin-bottom: 6px; }
+
+/* ============== PLACEHOLDER ============== */
+.placeholder {
+  padding: 40px; text-align: center; color: var(--text-dim); font-size: 14px;
+  background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius);
+}
+.placeholder code { background: var(--surface-2); padding: 2px 8px; border-radius: 4px; font-family: ui-monospace, monospace; color: var(--primary); }
+
+/* ============== PRINT ============== */
+@media print {
+  .nav { position: static; }
+  body { background: white; color: black; }
+  .score-card, .box, .persona-card, .table-wrap, .funnel-stage, .check-group, .timeline-step, .creative-card {
+    background: white; border: 1px solid #ddd; box-shadow: none; color: black;
+  }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="nav-brand"><span class="dot"></span> maxym-ai-ads · Blueprint Report</div>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#scores">Scores</a>
+      <a href="#audience">Audience</a>
+      <a href="#competitors">Competitors</a>
+      <a href="#budget">Budget</a>
+      <a href="#funnel">Funnel</a>
+      <a href="#creative">Creative</a>
+      <a href="#testing">Testing</a>
+      <a href="#checklist">Launch</a>
+      <a href="#roadmap">90-Day Plan</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="overview">
+  <div class="container">
+    <span class="hero-eyebrow">🚀 Paid Ads Blueprint Report</span>
+    <h1>{{COMPANY_NAME}}</h1>
+    <p class="subtitle">End-to-end advertising strategy · Generated {{GENERATED_AT}}</p>
+    <div class="hero-meta">
+      <div class="meta-item"><div class="meta-label">URL</div><div class="meta-value"><a href="{{COMPANY_URL}}" style="color:var(--primary);text-decoration:none;">{{COMPANY_URL}}</a></div></div>
+      <div class="meta-item"><div class="meta-label">Industry</div><div class="meta-value">{{INDUSTRY}}</div></div>
+      <div class="meta-item"><div class="meta-label">Monthly budget</div><div class="meta-value">{{MONTHLY_BUDGET}}</div></div>
+      <div class="meta-item"><div class="meta-label">Primary goal</div><div class="meta-value">{{PRIMARY_GOAL}}</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- SCORES -->
+<section class="container" id="scores">
+  <div class="scorecards">
+    <div class="score-card good">
+      <div class="score-label">Ad Readiness</div>
+      <div class="score-value">{{READINESS_SCORE}}</div>
+      <div class="score-sub">{{READINESS_VERDICT}}</div>
+      <div class="progress-bar"><div class="progress-fill good" style="width: {{READINESS_SCORE}}%;"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Strategy Score</div>
+      <div class="score-value">{{STRATEGY_SCORE}}</div>
+      <div class="score-sub">Composite 5-agent score</div>
+      <div class="progress-bar"><div class="progress-fill" style="width: {{STRATEGY_SCORE}}%;"></div></div>
+    </div>
+    <div class="score-card warn">
+      <div class="score-label">Break-even CPA</div>
+      <div class="score-value">{{BREAK_EVEN_CPA}}</div>
+      <div class="score-sub">Max spend per customer</div>
+    </div>
+    <div class="score-card good">
+      <div class="score-label">Target CPA</div>
+      <div class="score-value">{{TARGET_CPA}}</div>
+      <div class="score-sub">Conservative, 50% of break-even</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS & GAPS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 0 · Reality Check</div>
+      <h2 class="section-title">Strengths & Gaps</h2>
+      <p class="section-desc">Based on the homepage snapshot. Strengths should be amplified in ad creative. Gaps should be prioritized before scaling budget.</p>
+    </div>
+    <div class="two-col">
+      <div class="box strengths">
+        <h3>✅ Top 3 Strengths</h3>
+        {{TOP_3_STRENGTHS}}
+      </div>
+      <div class="box gaps">
+        <h3>⚠️ Top 3 Gaps to Fix</h3>
+        {{TOP_3_GAPS}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="section" id="audience">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 1 · Intelligence</div>
+      <h2 class="section-title">Audience Personas</h2>
+      <p class="section-desc">Targeting profiles extracted from site signals and industry-template benchmarks. Each persona is ready to use on its platform of choice.</p>
+    </div>
+    <div class="personas">
+      {{PERSONAS_CARDS}}
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITORS -->
+<section class="section" id="competitors">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 1 · Intelligence</div>
+      <h2 class="section-title">Competitive Landscape</h2>
+      <p class="section-desc">Platforms where direct competitors are active, their positioning, and the gaps you can own.</p>
+    </div>
+    <div class="table-wrap">
+      {{COMPETITOR_TABLE}}
+    </div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section class="section" id="budget">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 2 · Budget</div>
+      <h2 class="section-title">Platform Allocation</h2>
+      <p class="section-desc">Monthly budget split across platforms, aligned with industry benchmarks and your business type.</p>
+    </div>
+    <div class="platform-allocation">
+      {{PLATFORM_ALLOCATION}}
+    </div>
+  </div>
+</section>
+
+<!-- FUNNEL -->
+<section class="section" id="funnel">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 2 · Funnel</div>
+      <h2 class="section-title">Funnel Architecture</h2>
+      <p class="section-desc">How prospects move from cold traffic to paying customer, and where retargeting fires.</p>
+    </div>
+    <div class="funnel">
+      {{FUNNEL_DIAGRAM}}
+    </div>
+  </div>
+</section>
+
+<!-- CREATIVE -->
+<section class="section" id="creative">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 3 · Creative</div>
+      <h2 class="section-title">Creative Samples</h2>
+      <p class="section-desc">A preview of the hooks, copy, and video concepts generated for this campaign.</p>
+    </div>
+    <div class="creative-grid">
+      {{CREATIVE_SAMPLES}}
+    </div>
+  </div>
+</section>
+
+<!-- TESTING -->
+<section class="section" id="testing">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 4 · Testing</div>
+      <h2 class="section-title">A/B Testing Plan</h2>
+      <p class="section-desc">Prioritized test queue for the first 30 days. Run one test per variable at a time.</p>
+    </div>
+    <div class="table-wrap">
+      {{TESTING_PLAN_TABLE}}
+    </div>
+  </div>
+</section>
+
+<!-- LANDING SCORE QUICK VIEW -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 4 · Landing</div>
+      <h2 class="section-title">Landing Page Health</h2>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Landing Health Score</div>
+      <div class="score-value">{{LANDING_SCORE}}</div>
+      <div class="score-sub">Run <code style="background: var(--surface-2); padding: 2px 8px; border-radius: 4px; color: var(--primary);">/ads-landing</code> for the full audit + rewrite suggestions</div>
+      <div class="progress-bar"><div class="progress-fill" style="width: {{LANDING_SCORE}}%;"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="section" id="checklist">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 5 · Launch</div>
+      <h2 class="section-title">Launch Checklist</h2>
+      <p class="section-desc">Interactive — tick the boxes as you complete each item. Saved locally in your browser.</p>
+    </div>
+    <div class="checklist">
+      {{LAUNCH_CHECKLIST}}
+    </div>
+  </div>
+</section>
+
+<!-- 90-DAY ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Phase 5 · Roadmap</div>
+      <h2 class="section-title">90-Day Action Plan</h2>
+      <p class="section-desc">What to do each month. The 3 sacred rules apply throughout: 3× Kill Rule, 20% Scaling Rule, no edits during learning phase.</p>
+    </div>
+    <div class="timeline">
+      {{ACTION_PLAN_90D}}
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">maxym-ai-ads</div>
+    <div>Generated by <a href="https://github.com/Maxymize/maxym-ai-ads">maxym-ai-ads</a> · Released under the MIT License</div>
+    <div style="margin-top: 8px;">This report is your strategic blueprint. Re-run every 90 days to keep it fresh.</div>
+  </div>
+</footer>
+
+<script>
+// Interactive checklist with localStorage persistence
+(function() {
+  const checkboxes = document.querySelectorAll('.check-item input[type="checkbox"]');
+  const company = "{{COMPANY_NAME}}".replace(/[^a-zA-Z0-9]/g, '_');
+  const storageKey = `ads-blueprint-checklist-${company}`;
+  const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+  checkboxes.forEach((cb, idx) => {
+    const key = cb.id || `item-${idx}`;
+    if (saved[key]) {
+      cb.checked = true;
+      cb.closest('.check-item').classList.add('done');
+    }
+    cb.addEventListener('change', () => {
+      saved[key] = cb.checked;
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+      cb.closest('.check-item').classList.toggle('done', cb.checked);
+    });
+  });
+
+  // Smooth highlight on nav click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const id = this.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        e.preventDefault();
+        const el = document.querySelector(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

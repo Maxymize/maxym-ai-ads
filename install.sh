@@ -33,19 +33,22 @@ main() {
     SRC="${TEMP_DIR}/maxym-ai-ads"
 
     # Copy every sub-skill under skills/ (including the 'ads' orchestrator)
-    echo "→ Installing orchestrator + 29 sub-skills..."
+    echo "→ Installing orchestrator + 30 sub-skills..."
     for skill_dir in "${SRC}/skills"/*/; do
         skill_name=$(basename "${skill_dir}")
         target="${HOME}/.claude/skills/${skill_name}"
         mkdir -p "${target}"
         cp "${skill_dir}SKILL.md" "${target}/SKILL.md"
 
-        # Copy references/ (for the 'ads' orchestrator), assets/ (industry templates),
-        # and research-sources/ if they exist.
+        # Copy references/ (for the 'ads' orchestrator), assets/ (industry templates +
+        # HTML report template for ads-blueprint), and research-sources/ if they exist.
         for sub in references assets research-sources; do
             if [ -d "${skill_dir}${sub}" ]; then
                 mkdir -p "${target}/${sub}"
+                # Copy .md files
                 cp "${skill_dir}${sub}/"*.md "${target}/${sub}/" 2>/dev/null || true
+                # Copy .html files (blueprint report template)
+                cp "${skill_dir}${sub}/"*.html "${target}/${sub}/" 2>/dev/null || true
             fi
         done
     done
@@ -92,14 +95,15 @@ main() {
     echo ""
     echo "  Installed:"
     echo "    • 1 unified /ads orchestrator"
-    echo "    • 29 sub-skills"
+    echo "    • 30 sub-skills (incl. new /ads blueprint guided experience)"
     echo "    • 15 subagents (6 audit + 4 creative-pipeline + 5 strategy)"
     echo "    • 25 reference files"
     echo "    • 11 industry strategy templates"
+    echo "    • 1 interactive HTML report template"
     echo ""
     echo "Usage:"
     echo "  1. Start Claude Code:  claude"
-    echo "  2. Try:                /ads help"
+    echo "  2. Try:                /ads blueprint            ← GUIDED end-to-end flow"
     echo "                         /ads quick <url>"
     echo "                         /ads strategy <url>"
     echo "                         /ads audit"

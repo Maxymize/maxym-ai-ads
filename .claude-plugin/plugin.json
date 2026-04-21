@@ -1,7 +1,7 @@
 {
   "name": "maxym-ai-ads",
-  "version": "1.0.00",
-  "description": "Unified paid advertising skill for Claude Code: strategy, creative, multi-platform audit, and reporting. 30 sub-skills, 15 parallel subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
+  "version": "1.0.02",
+  "description": "Unified paid advertising skill for Claude Code: strategy, creative, multi-platform audit, and reporting. Ships with /ads blueprint, a fully guided zero-to-sales workflow that produces a PDF, interactive HTML report, and launch checklist. 31 sub-skills, 15 parallel subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
   "author": {
     "name": "Maximilian Giurastante",
     "email": "info@maxymizebusiness.com"

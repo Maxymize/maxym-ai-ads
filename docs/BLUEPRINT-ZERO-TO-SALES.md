@@ -15,6 +15,7 @@
 </p>
 
 <p align="center">
+  <a href="#-two-ways-to-follow-this-blueprint">Guided vs Manual</a> ·
   <a href="#-overview">Overview</a> ·
   <a href="#-the-5-phases">5 Phases</a> ·
   <a href="#-phase-0--reality-check">Phase 0</a> ·
@@ -26,6 +27,63 @@
   <a href="#-pitfalls">Pitfalls</a> ·
   <a href="#-quick-reference-card">Quick Ref</a>
 </p>
+
+---
+
+## ⚡ Two ways to follow this Blueprint
+
+> You don't have to follow this guide by hand. The plugin ships with a **guided mode** that runs the entire Blueprint for you, interactively.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🅰️ Guided mode (recommended)
+
+Let the plugin drive. You answer a **short questionnaire once**, then the skill runs each of the 5 phases automatically, pausing only at phase boundaries and critical gates.
+
+```shell
+/ads blueprint                         # full flow
+/ads blueprint <url>                   # pre-fills URL
+/ads blueprint --resume                # resume an interrupted session
+```
+
+**You get 3 deliverables at the end:**
+
+- 📄 `ADS-STRATEGY-REPORT.pdf` — client-ready
+- 🌐 `ADS-BLUEPRINT-REPORT.html` — interactive, dark-themed
+- ✅ `ADS-LAUNCH-CHECKLIST.md` — tasks by week
+
+✨ **Best for**: first-time users, client deliverables, anyone who wants structure with minimum typing.
+
+</td>
+<td width="50%" valign="top">
+
+### 🅱️ Manual mode (this document)
+
+Read the rest of this document and run each command yourself, step by step. Same sequence, same outcome, full control at every checkpoint.
+
+```shell
+/ads quick <url>
+/ads dna <url>
+/ads audience <url>
+/ads competitor <url>
+# … and so on
+```
+
+**You get:**
+
+- All the intermediate Markdown files
+- Freedom to pause/adjust/re-run any step
+- The same underlying logic as guided mode
+
+✨ **Best for**: experienced users, teams running the workflow collaboratively, situations where you want to inspect/edit outputs between phases.
+
+</td>
+</tr>
+</table>
+
+> 💡 **Both paths produce identical results.** Pick guided if you're just getting started; pick manual when you want to fine-tune or learn the underlying commands.
 
 ---
 
@@ -520,6 +578,11 @@ Print this. Pin it to your wall.
 ║                  Zero → First Sales in 8-12 days                 ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║                                                                  ║
+║  ⚡ GUIDED MODE (run the whole blueprint automatically):         ║
+║     /maxym-ai-ads:ads-blueprint                                  ║
+║                                                                  ║
+║  — or — follow each phase manually below:                        ║
+║                                                                  ║
 ║  PHASE 0 — Reality Check (1 day)                                 ║
 ║   └─ /maxym-ai-ads:ads-quick <url>                               ║
 ║                                                                  ║
@@ -584,6 +647,41 @@ After 30 days of following this blueprint, you should have:
 - ✅ A system, not a guess
 
 After 90 days, you should be **scaling a profitable campaign** — carefully, using the 20% rule — not gambling with your budget.
+
+---
+
+## 🚀 Ready to start?
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+### Want it guided?
+
+Run this one command and follow along:
+
+```shell
+/ads blueprint
+```
+
+The skill will ask a short questionnaire, then run everything you just read above — automatically.
+
+</td>
+<td align="center" width="50%">
+
+### Want to do it manually?
+
+Start with Phase 0:
+
+```shell
+/ads quick https://your-site.com
+```
+
+Then follow the commands in each phase of this document.
+
+</td>
+</tr>
+</table>
 
 ---
 

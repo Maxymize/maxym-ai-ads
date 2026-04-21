@@ -1,7 +1,7 @@
 ---
 name: ads
-description: "End-to-end paid advertising skill for Claude Code: strategy generation, copy production, multi-platform audit, and client-ready reporting. Orchestrates 29 specialized sub-skills and 15 agents across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, and Apple Ads. 250+ weighted checks, 11 industry templates, 5-agent parallel strategy builds, PDF reports, and AI creative generation."
-argument-hint: "strategy <url> | quick <url> | audience <url> | copy <platform> | hooks | video <product> | creative-brief <product> | creative-audit | funnel <url> | budget [amount] | keywords <url> | testing <campaign> | landing <url> | plan <industry> | competitor <url> | report-pdf | audit | google | meta | youtube | linkedin | tiktok | microsoft | apple | dna <url> | create | generate | photoshoot | math | test | help"
+description: "End-to-end paid advertising skill for Claude Code: strategy generation, copy production, multi-platform audit, and client-ready reporting. Orchestrates 30 specialized sub-skills and 15 agents across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, and Apple Ads. 250+ weighted checks, 11 industry templates, 5-agent parallel strategy builds, a guided zero-to-sales blueprint, PDF + HTML reports, and AI creative generation."
+argument-hint: "blueprint [url] | strategy <url> | quick <url> | audience <url> | copy <platform> | hooks | video <product> | creative-brief <product> | creative-audit | funnel <url> | budget [amount] | keywords <url> | testing <campaign> | landing <url> | plan <industry> | competitor <url> | report-pdf | audit | google | meta | youtube | linkedin | tiktok | microsoft | apple | dna <url> | create | generate | photoshoot | math | test | help"
 license: MIT
 ---
 
@@ -18,11 +18,17 @@ The router below maps each sub-command to the sub-skill that owns it.
 
 ## Quick Reference
 
+### 🌟 Guided Experience (recommended for first-time users)
+
+| Command | What it does |
+|---------|--------------|
+| `/ads blueprint [url]` | **Flagship guided workflow.** Walks the user through all 5 phases of the Zero-to-Sales Blueprint interactively. Asks an initial questionnaire, runs each phase automatically, pauses at phase boundaries for confirmation, blocks on critical decision gates, and produces a final PDF + interactive HTML report + launch checklist. Supports `--resume` to continue after an interruption. |
+
 ### Strategy & Planning
 
 | Command | What it does |
 |---------|--------------|
-| `/ads strategy <url>` | Flagship: 5-agent parallel strategy build with Ad Readiness Score (0-100). Full report. |
+| `/ads strategy <url>` | 5-agent parallel strategy build with Ad Readiness Score (0-100). Full report. |
 | `/ads quick <url>` | 60-second ad readiness snapshot: value prop, offer, trust, CTA, platform pick. |
 | `/ads audience <url>` | Detailed audience personas with platform-specific targeting parameters. |
 | `/ads plan <industry>` | Strategic ad plan using industry template (see Industries below). |
@@ -88,6 +94,7 @@ Each sub-command loads its matching sub-skill from `skills/ads-*/SKILL.md`.
 
 | Sub-command | Sub-skill path |
 |---|---|
+| `blueprint` | `skills/ads-blueprint/` |
 | `strategy` | `skills/ads-strategy/` |
 | `quick` | `skills/ads-quick/` |
 | `audience` | `skills/ads-audience/` |
@@ -307,10 +314,11 @@ Aggregate = Σ(Platform_Score × Platform_Budget_Share)
 
 ---
 
-## Sub-Skills (29)
+## Sub-Skills (30)
 
-This skill orchestrates 29 specialized sub-skills grouped by purpose.
+This skill orchestrates 30 specialized sub-skills grouped by purpose.
 
+**Guided experience (1)**: ads-blueprint
 **Strategy & planning (6)**: ads-strategy · ads-quick · ads-audience · ads-plan · ads-keywords · ads-competitor
 **Creative & copy (5)**: ads-copy · ads-hooks · ads-video · ads-creative-brief · ads-creative-audit
 **Funnel, budget & testing (4)**: ads-funnel · ads-budget · ads-testing · ads-landing

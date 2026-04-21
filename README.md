@@ -11,10 +11,11 @@
 <p align="center">
   <a href="https://claude.ai/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-Skill-6E44FF?logo=anthropic&logoColor=white" alt="Claude Code Skill"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/version-1.0.00-success" alt="Version 1.0.00">
+  <img src="https://img.shields.io/badge/version-1.0.02-success" alt="Version 1.0.02">
   <img src="https://img.shields.io/badge/platforms-Google%20%7C%20Meta%20%7C%20LinkedIn%20%7C%20TikTok%20%7C%20Microsoft%20%7C%20YouTube%20%7C%20Apple-blue" alt="Supported platforms">
   <img src="https://img.shields.io/badge/audit%20checks-250%2B-brightgreen" alt="250+ audit checks">
   <img src="https://img.shields.io/badge/industry%20templates-11-blueviolet" alt="11 industry templates">
+  <img src="https://img.shields.io/badge/🌟%20guided%20workflow-%2Fads%20blueprint-6E44FF" alt="Guided workflow">
 </p>
 
 <p align="center">
@@ -37,7 +38,7 @@ Most "ad tools" are either **upstream** (they help you plan campaigns from scrat
 - **From a live account** → a 250+ check technical audit across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft and Apple Ads, with 0–100 Ads Health Score, compliance quality gates, and a prioritized Quick Wins action list.
 - **From a brand** → a complete creative pipeline (brand DNA → campaign brief → AI image generation → 5-style product photoshoot).
 
-One orchestrator, **30 sub-commands**, 15 parallel subagents, 25 RAG reference files, 11 industry templates. MIT licensed.
+One orchestrator, **31 sub-commands** (including the new guided `/ads blueprint`), 15 parallel subagents, 25 RAG reference files, 11 industry templates. MIT licensed.
 
 ---
 
@@ -76,17 +77,36 @@ cd maxym-ai-ads
 .\install.ps1          # Windows PowerShell
 ```
 
-The installer copies the `/ads` orchestrator, 30 sub-skills, 15 subagents, 25 reference files, 11 industry templates, and Python helper scripts into `~/.claude/skills/` and `~/.claude/agents/`, then runs `pip install` for the Python dependencies.
+The installer copies the `/ads` orchestrator, 30 sub-skills (including the new `ads-blueprint`), 15 subagents, 25 reference files, 11 industry templates, and Python helper scripts into `~/.claude/skills/` and `~/.claude/agents/`, then runs `pip install` for the Python dependencies.
 
 > If your clone lives at a different GitHub path, set `MAXYM_ADS_REPO_URL` before running the installer.
 
 ---
 
-## 🗺️ Zero-to-Sales Blueprint
+## 🗺️ Zero-to-Sales Blueprint — two ways to run it
 
-Don't know where to start? Read the **[Zero-to-Sales Blueprint](docs/BLUEPRINT-ZERO-TO-SALES.md)** — the exact command sequence to go from "I have a product" to "my ads print money" in 8–12 days of prep, with zero wasted budget.
+You can follow the Blueprint in two ways. **Both produce the same outcome.** Pick the one that fits you.
 
-The blueprint covers all 5 phases: Reality Check → Intelligence → Budget/Funnel → Creative → Launch → Optimize, with flowcharts, decision gates, and the 3 sacred rules of paid ads optimization.
+### 🅰️ Guided (recommended) — `/ads blueprint`
+
+Let the plugin run the entire workflow interactively. You answer a short questionnaire once, and the skill takes you through all 5 phases, pausing only at phase boundaries and critical decision gates.
+
+```shell
+/ads blueprint                         # full interactive flow
+/ads blueprint https://your-site.com   # pre-fills URL, asks the rest
+/ads blueprint --resume                # resume after an interruption
+```
+
+At the end, you receive **three deliverables**:
+- 📄 `ADS-STRATEGY-REPORT.pdf` — client-ready PDF
+- 🌐 `ADS-BLUEPRINT-REPORT.html` — interactive HTML report (dark theme, persistent checklist, printable)
+- ✅ `ADS-LAUNCH-CHECKLIST.md` — pre-launch / launch-day / week-1 / week-2 tasks
+
+### 🅱️ Manual — read the playbook
+
+Prefer to run each command yourself? Read the full **[Zero-to-Sales Blueprint](docs/BLUEPRINT-ZERO-TO-SALES.md)** — same sequence, same outcome, full control over every step. Covers all 5 phases (Reality Check → Intelligence → Budget/Funnel → Creative → Launch → Optimize) with flowcharts, decision gates, and the 3 sacred rules of paid ads optimization.
+
+> 💡 **When to pick which?** Guided = first time, or client handoff. Manual = you want fine-grained control and know where to stop for review.
 
 ---
 
@@ -97,7 +117,8 @@ The blueprint covers all 5 phases: Reality Check → Intelligence → Budget/Fun
 claude
 
 # 2. Pick what you need
-/ads help                                # all 30 sub-commands
+/ads help                                # list every sub-command
+/ads blueprint                           # GUIDED zero-to-sales flow (recommended for first-time)
 /ads quick https://your-site.com         # 60-second ad readiness snapshot
 /ads strategy https://your-site.com      # flagship: 5-agent parallel strategy build
 /ads audit                               # full multi-platform audit, 6 agents in parallel
@@ -118,11 +139,17 @@ Most sub-skills ask for context the first time (industry, monthly spend, goal, a
 
 ## Commands
 
+### 🌟 Guided Experience
+
+| Command | What it does |
+|---------|--------------|
+| `/ads blueprint [url]` | **Flagship guided workflow.** Walks you through the full Zero-to-Sales Blueprint interactively — asks a short questionnaire, runs each phase automatically, pauses at phase boundaries and critical decision gates, and delivers a PDF + interactive HTML + launch checklist at the end. Supports `--resume`. |
+
 ### Strategy & Planning
 
 | Command | What it does |
 |---------|--------------|
-| `/ads strategy <url>` | Flagship. 5-agent parallel strategy build with composite Ad Readiness Score (0–100). |
+| `/ads strategy <url>` | 5-agent parallel strategy build with composite Ad Readiness Score (0–100). |
 | `/ads quick <url>` | 60-second readiness snapshot: value prop, offer, trust, CTA, platform pick. |
 | `/ads audience <url>` | Detailed personas with platform-specific targeting parameters. |
 | `/ads plan <industry>` | Strategic ad plan using one of 11 industry templates. |

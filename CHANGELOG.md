@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented here. The format is loosely based on [Keep a Changelog](https://keepachangelog.com/) and this project adheres to semantic versioning where practical.
 
+## [1.0.02] — 2026-04-21
+
+### Added
+- **New guided skill `/ads blueprint`** — interactive end-to-end workflow that walks the user through all 5 phases of the Zero-to-Sales Blueprint. Asks a short questionnaire up front, runs every phase automatically, pauses at phase boundaries for confirmation, blocks only at critical decision gates (Phase 0 score <40, Phase 2 break-even CPA < 0.8× industry benchmark).
+- **Interactive HTML report** — self-contained, zero-dependency, dark-themed HTML report template (`ADS-BLUEPRINT-REPORT.html`) with persistent checklist (localStorage), smooth scroll navigation, print-friendly CSS. Template lives at `skills/ads-blueprint/assets/report-template.html`.
+- **Three final deliverables** produced at the end of the guided flow: `ADS-STRATEGY-REPORT.pdf` (client-ready), `ADS-BLUEPRINT-REPORT.html` (interactive), `ADS-LAUNCH-CHECKLIST.md` (week-by-week tasks).
+- **State persistence** via `ADS-BLUEPRINT-STATE.json` — supports `/ads blueprint --resume` to continue after an interruption.
+- **Dual-path documentation** in both README and `docs/BLUEPRINT-ZERO-TO-SALES.md`: prominent side-by-side presentation of Guided vs Manual mode so new users can choose.
+
+### Changed
+- Sub-skill count: 29 → 30 (added `ads-blueprint`)
+- `install.sh` / `install.ps1` now also copy `.html` files from each skill's `assets/` directory (needed for the blueprint report template)
+- Router (`skills/ads/SKILL.md`) updated with new "Guided Experience" section and `blueprint` entry in the routing table
+- README: new "Two ways to run it" section, guided-workflow badge in header, `/ads blueprint` at the top of Quick Start
+
 ## [1.0.01] — 2026-04-21
 
 ### Changed

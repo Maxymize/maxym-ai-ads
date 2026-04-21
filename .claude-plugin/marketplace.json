@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "maxym-ai-ads",
-      "source": ".",
+      "source": "./",
       "description": "Unified paid advertising skill: strategy, creative, multi-platform audit, and reporting. 30 sub-skills, 15 subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
       "version": "1.0.00",
       "category": "marketing",

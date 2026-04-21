@@ -2,7 +2,7 @@
 name: ads-quick
 description: 60-Second Ad Readiness Snapshot — quick assessment without subagents
 version: 1.0.0
-author: AI Ads Strategist
+author: maxym-ai-ads
 tags: [ads, quick, snapshot, assessment, readiness]
 trigger: /ads quick
 output: Terminal output (no file saved)

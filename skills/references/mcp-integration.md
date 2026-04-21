@@ -1,11 +1,11 @@
 # MCP Integration Guide
 
 <!-- Created: 2026-04-13 | v1.5 -->
-<!-- Purpose: How to pair claude-ads with live ad platform MCP servers -->
+<!-- Purpose: How to pair maxym-ai-ads with live ad platform MCP servers -->
 
 ## Overview
 
-claude-ads works with manually provided data by default (exports, screenshots, pasted metrics). For live API access, pair it with MCP servers that connect Claude Code directly to ad platform APIs.
+maxym-ai-ads works with manually provided data by default (exports, screenshots, pasted metrics). For live API access, pair it with MCP servers that connect Claude Code directly to ad platform APIs.
 
 ## Available MCP Servers
 
@@ -96,13 +96,13 @@ No dedicated MCP server available as of April 2026. Use:
 
 ## Hybrid Workflow
 
-The recommended approach combines MCP live data with claude-ads structured analysis:
+The recommended approach combines MCP live data with maxym-ai-ads structured analysis:
 
 ```
 1. Connect MCP server(s) for available platforms
-2. Run /ads audit (claude-ads auto-detects MCP data sources)
+2. Run /ads audit (maxym-ai-ads auto-detects MCP data sources)
 3. For platforms without MCP, provide exports manually
-4. claude-ads merges all data into unified audit
+4. maxym-ai-ads merges all data into unified audit
 5. Health Score calculated across all platforms regardless of data source
 ```
 

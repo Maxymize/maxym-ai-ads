@@ -5,7 +5,7 @@ for environments where banana-claude is not installed.
 
 Preferred method: Install banana-claude and use `/banana generate` or
 the nanobanana-mcp tools (gemini_generate_image, set_aspect_ratio).
-See: https://github.com/AgriciDaniel/claude-banana
+See: https://github.com/MAXYMIZE-BUSINESS/banana-claude
 
 Generate ad creative images using a pluggable image generation API.
 

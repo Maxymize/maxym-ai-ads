@@ -20,7 +20,7 @@ except ImportError:
 
 
 DEFAULT_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; ClaudeAds/1.1; +https://github.com/AgriciDaniel/claude-ads)",
+    "User-Agent": "Mozilla/5.0 (compatible; maxym-ai-ads/1.0; +https://github.com/MAXYMIZE-BUSINESS/maxym-ai-ads)",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.5",
     "Accept-Encoding": "gzip, deflate",

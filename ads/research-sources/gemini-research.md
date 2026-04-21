@@ -248,5 +248,5 @@ The 2026 advertising ecosystem operates under a **signal-based paradigm**; trans
 
 ### Safe Write Operations
 - All write ops = "Dry Run" or explicit user confirmation
-- Log every change to claude-ads.log with timestamps + previous values
+- Log every change to maxym-ai-ads.log with timestamps + previous values
 - Generative copy must use platform character limits as strict constraints

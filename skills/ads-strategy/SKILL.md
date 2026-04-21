@@ -7,7 +7,7 @@ description: Full Ad Strategy Orchestrator. Launches 5 parallel subagents to bui
 
 ## Skill Purpose
 
-Perform a comprehensive, end-to-end advertising strategy build for any business from a single URL. This is the flagship command of the AI Ads Strategist — it launches 5 parallel subagents simultaneously to analyze every dimension of ad readiness, then synthesizes all findings into a unified strategy document with a composite Ad Readiness Score (0-100).
+Perform a comprehensive, end-to-end advertising strategy build for any business from a single URL. This is the flagship command of maxym-ai-ads — it launches 5 parallel subagents simultaneously to analyze every dimension of ad readiness, then synthesizes all findings into a unified strategy document with a composite Ad Readiness Score (0-100).
 
 The output is a client-ready deliverable that covers audience research, creative strategy, funnel architecture, competitive positioning, and budget allocation — the kind of document an agency would charge $3,000-$10,000 to produce.
 

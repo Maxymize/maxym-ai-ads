@@ -2,7 +2,7 @@
 name: ads-creative
 description: Creative Brief Generator for designers, video editors, and content teams
 version: 1.0.0
-author: AI Ads Strategist
+author: maxym-ai-ads
 tags: [ads, creative, briefs, design, video, ugc]
 trigger: /ads creative
 output: ADS-CREATIVE-BRIEF.md

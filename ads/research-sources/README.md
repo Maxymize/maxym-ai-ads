@@ -1,6 +1,6 @@
-# Research Sources: claude-ads
+# Research Sources: maxym-ai-ads
 
-Raw processed research documents used to build the claude-ads reference database.
+Raw processed research documents used to build the maxym-ai-ads reference database.
 These preserve the full context from each research source for future reference.
 
 ## Sources

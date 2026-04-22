@@ -11,11 +11,12 @@
 <p align="center">
   <a href="https://claude.ai/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-Skill-6E44FF?logo=anthropic&logoColor=white" alt="Claude Code Skill"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/version-1.0.02-success" alt="Version 1.0.02">
+  <img src="https://img.shields.io/badge/version-1.0.03-success" alt="Version 1.0.03">
   <img src="https://img.shields.io/badge/platforms-Google%20%7C%20Meta%20%7C%20LinkedIn%20%7C%20TikTok%20%7C%20Microsoft%20%7C%20YouTube%20%7C%20Apple-blue" alt="Supported platforms">
   <img src="https://img.shields.io/badge/audit%20checks-250%2B-brightgreen" alt="250+ audit checks">
   <img src="https://img.shields.io/badge/industry%20templates-11-blueviolet" alt="11 industry templates">
   <img src="https://img.shields.io/badge/🌟%20guided%20workflow-%2Fads%20blueprint-6E44FF" alt="Guided workflow">
+  <img src="https://img.shields.io/badge/📚%20adaptive-beginner%20%7C%20intermediate%20%7C%20expert-00E0B8" alt="Adaptive to experience level">
 </p>
 
 <p align="center">
@@ -89,7 +90,7 @@ You can follow the Blueprint in two ways. **Both produce the same outcome.** Pic
 
 ### 🅰️ Guided (recommended) — `/ads blueprint`
 
-Let the plugin run the entire workflow interactively. You answer a short questionnaire once, and the skill takes you through all 5 phases, pausing only at phase boundaries and critical decision gates.
+Let the plugin run the entire workflow interactively. You answer a short questionnaire **one question at a time** (no copy-paste marathons), and the skill takes you through all 5 phases, pausing only at phase boundaries and critical decision gates.
 
 ```shell
 /ads blueprint                         # full interactive flow
@@ -97,16 +98,36 @@ Let the plugin run the entire workflow interactively. You answer a short questio
 /ads blueprint --resume                # resume after an interruption
 ```
 
-At the end, you receive **three deliverables**:
-- 📄 `ADS-STRATEGY-REPORT.pdf` — client-ready PDF
-- 🌐 `ADS-BLUEPRINT-REPORT.html` — interactive HTML report (dark theme, persistent checklist, printable)
-- ✅ `ADS-LAUNCH-CHECKLIST.md` — pre-launch / launch-day / week-1 / week-2 tasks
+**Everything is saved in a clean folder tree**:
+```
+ADS-Blueprint/
+├── ADS-STRATEGY-REPORT.pdf            ← client-ready PDF
+├── ADS-BLUEPRINT-REPORT.html          ← interactive HTML report
+├── ADS-LAUNCH-CHECKLIST.md            ← week-by-week tasks
+├── Phase-0-Reality-Check/
+├── Phase-1-Intelligence/
+├── Phase-2-Budget-Funnel/
+├── Phase-3-Creative/
+└── Phase-4-Landing-Test/
+```
+
+### 📚 Adaptive to your experience level (★ v1.0.03)
+
+At the start of the flow, you tell the skill how comfortable you are with paid ads. The output adapts:
+
+| Your level | What you get |
+|---|---|
+| 🎓 **Beginner** | Every technical file gets a parallel **`-Beginner.md` twin** — a full rewrite in plain language with analogies, examples, and a glossary. No jargon left unexplained. |
+| 📊 **Intermediate** | Technical files with a **"📚 In plain English"** section at the bottom of each file. Quick refresher without the overhead of a full twin. |
+| 🚀 **Expert** | Just the technical files. No explainers, fastest output. |
+
+**This is the only paid-ads skill that adapts its own documentation to your level.** If you've never heard of CPC, ROAS, or funnels, you don't get dropped into a marketer's report and left to figure it out — you get a companion document that assumes zero prior knowledge.
 
 ### 🅱️ Manual — read the playbook
 
-Prefer to run each command yourself? Read the full **[Zero-to-Sales Blueprint](docs/BLUEPRINT-ZERO-TO-SALES.md)** — same sequence, same outcome, full control over every step. Covers all 5 phases (Reality Check → Intelligence → Budget/Funnel → Creative → Launch → Optimize) with flowcharts, decision gates, and the 3 sacred rules of paid ads optimization.
+Prefer to run each command yourself? Read the full **[Zero-to-Sales Blueprint](docs/BLUEPRINT-ZERO-TO-SALES.md)** — same sequence, same outcome, full control over every step. Covers all 5 phases with flowcharts, decision gates, and the 3 sacred rules of paid ads optimization.
 
-> 💡 **When to pick which?** Guided = first time, or client handoff. Manual = you want fine-grained control and know where to stop for review.
+> 💡 **When to pick which?** Guided = first time, non-technical user, or client handoff. Manual = fine-grained control and you know where to stop for review.
 
 ---
 
@@ -210,6 +231,8 @@ Most sub-skills ask for context the first time (industry, monthly spend, goal, a
 
 ## Features
 
+- 🌟 **Guided `/ads blueprint`** — one command walks you through the full zero-to-sales flow with one-question-at-a-time intake, phase-boundary checkpoints, and a clean `ADS-Blueprint/Phase-N/` output tree
+- 📚 **Adaptive-to-experience output** — beginner / intermediate / expert mode. Beginner mode writes every file twice: technical version + plain-language twin (`-Beginner.md`). Intermediate adds a "📚 In plain English" section at the bottom of each file. Expert keeps output tight.
 - **250+ weighted audit checks** across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, and Apple Ads
 - **Ads Health Score (0–100)** and **Ad Readiness Score (0–100)** with clear A→F grading
 - **5-agent parallel strategy build** — audience, creative, funnel, competitive, budget — in a single shot

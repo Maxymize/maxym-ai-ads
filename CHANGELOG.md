@@ -2,6 +2,27 @@
 
 All notable changes to this project are documented here. The format is loosely based on [Keep a Changelog](https://keepachangelog.com/) and this project adheres to semantic versioning where practical.
 
+## [1.0.03] — 2026-04-21
+
+### Added
+- **11th intake question: experience level** (beginner / intermediate / expert) added to `/ads blueprint`. The answer drives output formatting throughout every phase.
+- **Beginner mode**: every technical file in every phase gets a parallel `-Beginner.md` twin — a standalone rewrite in plain language, with analogies, examples, glossary, and a "What to do next" section. Never a summary of the technical file, always a full companion document.
+- **Intermediate mode**: every technical file appends a "📚 In plain English" section at the bottom (200–500 words, defines acronyms, lists key takeaways).
+- **Expert mode**: technical files only, no explainers (fastest output, matches pre-v1.0.03 behavior for legacy users).
+- **Beginner / Intermediate banner in the HTML report**: the hero section now shows the user's experience level and (only for beginner/intermediate) a contextual banner pointing to the plain-language companion content.
+
+### Changed
+- **Intake UX: one question at a time.** The skill now previews the full 11-question list upfront so the user can mentally prepare, then asks each question individually, waits for the answer, echoes it back, and moves to the next. This replaces the previous "dump-all-questions-at-once" pattern that forced users to copy-paste back and forth.
+- **Clean output structure**: every phase writes into a dedicated subfolder `ADS-Blueprint/Phase-N-Name/`. Final deliverables (PDF, HTML, Launch Checklist, state file) live at the `ADS-Blueprint/` root. Replaces the flat-file-dump-in-CWD behavior.
+- **Intake preview card** shows explicit count and "one at a time" promise.
+- README and `docs/BLUEPRINT-ZERO-TO-SALES.md` prominently advertise the new adaptive-by-experience feature as a distinguishing selling point.
+- New badge in README: "📚 adaptive: beginner | intermediate | expert".
+
+### Hard rules (new)
+- NEVER ask multiple questions in the same assistant message — one question, wait, echo, next.
+- ALWAYS write outputs into `ADS-Blueprint/Phase-N-Name/`, never in CWD root.
+- RESPECT `intake.experience_level`: beginner → write -Beginner.md twin; intermediate → append "📚 In plain English" section; expert → technical only.
+
 ## [1.0.02] — 2026-04-21
 
 ### Added

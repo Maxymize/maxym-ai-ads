@@ -40,7 +40,7 @@
 
 ### 🅰️ Guided mode (recommended)
 
-Let the plugin drive. You answer a **short questionnaire once**, then the skill runs each of the 5 phases automatically, pausing only at phase boundaries and critical gates.
+Let the plugin drive. The skill asks you **one question at a time** (no copy-paste marathons) and then runs each of the 5 phases automatically, pausing only at phase boundaries and critical gates.
 
 ```shell
 /ads blueprint                         # full flow
@@ -48,13 +48,23 @@ Let the plugin drive. You answer a **short questionnaire once**, then the skill 
 /ads blueprint --resume                # resume an interrupted session
 ```
 
-**You get 3 deliverables at the end:**
+**Everything lives in a clean folder tree:**
 
-- 📄 `ADS-STRATEGY-REPORT.pdf` — client-ready
-- 🌐 `ADS-BLUEPRINT-REPORT.html` — interactive, dark-themed
-- ✅ `ADS-LAUNCH-CHECKLIST.md` — tasks by week
+```
+ADS-Blueprint/
+├── ADS-STRATEGY-REPORT.pdf
+├── ADS-BLUEPRINT-REPORT.html
+├── ADS-LAUNCH-CHECKLIST.md
+└── Phase-0, Phase-1, … Phase-4/
+```
 
-✨ **Best for**: first-time users, client deliverables, anyone who wants structure with minimum typing.
+**Plus — adaptive to your experience level:**
+
+- 🎓 **Beginner**: every file has a `-Beginner.md` twin in plain language
+- 📊 **Intermediate**: files end with a "📚 In plain English" section
+- 🚀 **Expert**: technical files only, fastest output
+
+✨ **Best for**: first-time users, non-technical founders, client deliverables, anyone who wants structure with minimum typing.
 
 </td>
 <td width="50%" valign="top">

@@ -5,15 +5,15 @@
     "email": "info@maxymizebusiness.com"
   },
   "metadata": {
-    "description": "Paid advertising plugins for Claude Code — strategy, creative generation, and multi-platform audit.",
-    "version": "1.0.03"
+    "description": "Paid advertising plugins for Claude Code — strategy, creative generation, multi-platform audit, and closed-loop guided execution.",
+    "version": "1.0.04"
   },
   "plugins": [
     {
       "name": "maxym-ai-ads",
       "source": "./",
-      "description": "Unified paid advertising skill: strategy, creative, multi-platform audit, reporting, plus the guided /ads blueprint end-to-end workflow with one-question-at-a-time intake, phase-folder output structure, and adaptive documentation (beginner / intermediate / expert). 31 sub-skills, 15 subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
-      "version": "1.0.03",
+      "description": "Unified paid advertising skill: closed-loop guidance from strategy to launched campaigns. /ads blueprint generates the plan; /ads blueprint-execution walks the user click-by-click through gap-fixing, pixel setup, per-platform campaign build, launch day sequencing, learning-phase observation, and the bi-weekly optimization loop (3× Kill Rule, 20% Scaling, creative fatigue detection). Adaptive output for beginner/intermediate/expert. 32 sub-skills, 15 subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
+      "version": "1.0.04",
       "category": "marketing",
       "tags": [
         "advertising",

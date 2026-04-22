@@ -11,11 +11,11 @@
 <p align="center">
   <a href="https://claude.ai/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-Skill-6E44FF?logo=anthropic&logoColor=white" alt="Claude Code Skill"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/version-1.0.03-success" alt="Version 1.0.03">
+  <img src="https://img.shields.io/badge/version-1.0.04-success" alt="Version 1.0.04">
   <img src="https://img.shields.io/badge/platforms-Google%20%7C%20Meta%20%7C%20LinkedIn%20%7C%20TikTok%20%7C%20Microsoft%20%7C%20YouTube%20%7C%20Apple-blue" alt="Supported platforms">
   <img src="https://img.shields.io/badge/audit%20checks-250%2B-brightgreen" alt="250+ audit checks">
   <img src="https://img.shields.io/badge/industry%20templates-11-blueviolet" alt="11 industry templates">
-  <img src="https://img.shields.io/badge/🌟%20guided%20workflow-%2Fads%20blueprint-6E44FF" alt="Guided workflow">
+  <img src="https://img.shields.io/badge/🌟%20guided-blueprint%20%2B%20execution-6E44FF" alt="Guided workflows">
   <img src="https://img.shields.io/badge/📚%20adaptive-beginner%20%7C%20intermediate%20%7C%20expert-00E0B8" alt="Adaptive to experience level">
 </p>
 
@@ -39,7 +39,9 @@ Most "ad tools" are either **upstream** (they help you plan campaigns from scrat
 - **From a live account** → a 250+ check technical audit across Google, Meta, YouTube, LinkedIn, TikTok, Microsoft and Apple Ads, with 0–100 Ads Health Score, compliance quality gates, and a prioritized Quick Wins action list.
 - **From a brand** → a complete creative pipeline (brand DNA → campaign brief → AI image generation → 5-style product photoshoot).
 
-One orchestrator, **31 sub-commands** (including the new guided `/ads blueprint`), 15 parallel subagents, 25 RAG reference files, 11 industry templates. MIT licensed.
+One orchestrator, **32 sub-commands**, 15 parallel subagents, 25 RAG reference files, 11 industry templates. MIT licensed.
+
+**Closed-loop guidance**: `/ads blueprint` produces the plan. `/ads blueprint-execution` **puts it into practice** — from gap-fixing and pixel installation to campaign build, launch day sequencing, and the bi-weekly optimization cycle post-launch.
 
 ---
 
@@ -84,36 +86,46 @@ The installer copies the `/ads` orchestrator, 30 sub-skills (including the new `
 
 ---
 
-## 🗺️ Zero-to-Sales Blueprint — two ways to run it
+## 🌟 The closed-loop workflow: plan → execute
 
-You can follow the Blueprint in two ways. **Both produce the same outcome.** Pick the one that fits you.
+`maxym-ai-ads` is the only paid-ads skill that takes you **from idea to scaled campaigns** in a single, guided flow. Two commands — two halves of the same loop.
 
-### 🅰️ Guided (recommended) — `/ads blueprint`
+### 1️⃣ `/ads blueprint` — the plan
 
-Let the plugin run the entire workflow interactively. You answer a short questionnaire **one question at a time** (no copy-paste marathons), and the skill takes you through all 5 phases, pausing only at phase boundaries and critical decision gates.
+Interactive strategy builder. Asks a short questionnaire **one question at a time** (no copy-paste marathons), then walks you through 5 phases: Reality Check → Intelligence → Budget/Funnel → Creative → Landing/Test.
 
 ```shell
 /ads blueprint                         # full interactive flow
-/ads blueprint https://your-site.com   # pre-fills URL, asks the rest
-/ads blueprint --resume                # resume after an interruption
+/ads blueprint https://your-site.com   # pre-fills URL
+/ads blueprint --resume                # continue after interruption
 ```
 
-**Everything is saved in a clean folder tree**:
-```
-ADS-Blueprint/
-├── ADS-STRATEGY-REPORT.pdf            ← client-ready PDF
-├── ADS-BLUEPRINT-REPORT.html          ← interactive HTML report
-├── ADS-LAUNCH-CHECKLIST.md            ← week-by-week tasks
-├── Phase-0-Reality-Check/
-├── Phase-1-Intelligence/
-├── Phase-2-Budget-Funnel/
-├── Phase-3-Creative/
-└── Phase-4-Landing-Test/
+**You walk away with**: `ADS-STRATEGY-REPORT.pdf`, `ADS-BLUEPRINT-REPORT.html`, `ADS-LAUNCH-CHECKLIST.md`, plus a phase-folder tree with every intermediate deliverable (personas, competitor analysis, budget, funnel, keywords, hooks, copy, video scripts, landing audit, A/B testing plan, AI-generated images).
+
+### 2️⃣ `/ads blueprint-execution` — the doing ★ NEW in v1.0.04
+
+The plan is ready. Now what? Open `/ads blueprint-execution` and the skill **reads your existing `ADS-Blueprint/` folder** and coaches you through every remaining step:
+
+- **Gate check** — close residual blocking issues (pixel missing, landing <60, compliance gaps)
+- **Pre-launch tracking setup** — Meta Pixel + CAPI, GA4, LinkedIn Insight, UTM templates, Consent Mode V2 — step by step with verification checks
+- **Campaign build** — for each active platform, click-by-click instructions with your actual copy, budgets, audiences, bidding strategies already filled in from the blueprint files
+- **Launch day** — exact activation sequence, 2h / 24h / 48h check-ins, the "do nothing in learning phase" rule
+- **Learning phase** — weekly observation, no edits until 50+ conversions
+- **Optimization cycle** — every 2 weeks, paste metrics (or export CSV) and the skill applies the **3× Kill Rule, 20% Scaling Rule, and creative fatigue detection** mechanically on your data. Tells you: kill | scale | refresh | hold for every ad set.
+
+You paste text, CSV, or screenshots. The skill parses, decides, and generates the edit instructions.
+
+```shell
+/ads blueprint-execution                  # auto-detect current stage
+/ads blueprint-execution --fresh          # restart gate check
+/ads blueprint-execution audit            # jump to bi-weekly audit
 ```
 
-### 📚 Adaptive to your experience level (★ v1.0.03)
+**Outputs**: `ADS-Blueprint/Execution/live-dashboard.html` (regenerated after every session), `EXECUTION-LOG.md` (diary of every action), per-platform `meta-setup-instructions.md` / `google-setup-instructions.md` / etc. (re-readable later without re-invoking the skill).
 
-At the start of the flow, you tell the skill how comfortable you are with paid ads. The output adapts:
+### 📚 Adaptive to your experience level
+
+Both guided workflows tailor output to what you declared in intake:
 
 | Your level | What you get |
 |---|---|
@@ -123,11 +135,9 @@ At the start of the flow, you tell the skill how comfortable you are with paid a
 
 **This is the only paid-ads skill that adapts its own documentation to your level.** If you've never heard of CPC, ROAS, or funnels, you don't get dropped into a marketer's report and left to figure it out — you get a companion document that assumes zero prior knowledge.
 
-### 🅱️ Manual — read the playbook
+### 📘 Want to read the playbook instead?
 
-Prefer to run each command yourself? Read the full **[Zero-to-Sales Blueprint](docs/BLUEPRINT-ZERO-TO-SALES.md)** — same sequence, same outcome, full control over every step. Covers all 5 phases with flowcharts, decision gates, and the 3 sacred rules of paid ads optimization.
-
-> 💡 **When to pick which?** Guided = first time, non-technical user, or client handoff. Manual = fine-grained control and you know where to stop for review.
+Prefer to run each command yourself? The full **[Zero-to-Sales Blueprint](docs/BLUEPRINT-ZERO-TO-SALES.md)** documents the same sequence in detail — decision gates, the 3 sacred rules of paid ads optimization, and every pitfall to avoid. Manual mode when you want fine-grained control.
 
 ---
 
@@ -164,7 +174,8 @@ Most sub-skills ask for context the first time (industry, monthly spend, goal, a
 
 | Command | What it does |
 |---------|--------------|
-| `/ads blueprint [url]` | **Flagship guided workflow.** Walks you through the full Zero-to-Sales Blueprint interactively — asks a short questionnaire, runs each phase automatically, pauses at phase boundaries and critical decision gates, and delivers a PDF + interactive HTML + launch checklist at the end. Supports `--resume`. |
+| `/ads blueprint [url]` | **Flagship guided workflow — STRATEGY.** Walks you through the full Zero-to-Sales Blueprint interactively — asks a short questionnaire, runs each phase automatically, pauses at phase boundaries and critical decision gates, and delivers a PDF + interactive HTML + launch checklist at the end. Supports `--resume`. |
+| `/ads blueprint-execution` | **Flagship guided workflow — EXECUTION.** Takes the `ADS-Blueprint/` folder from `/ads blueprint` and coaches you from gap-fixing to pixel setup, campaign build, launch day, learning phase, and the bi-weekly optimization loop (3× Kill Rule, 20% Scaling Rule, creative fatigue detection). Produces a live HTML dashboard, per-platform setup guides, and session log. |
 
 ### Strategy & Planning
 

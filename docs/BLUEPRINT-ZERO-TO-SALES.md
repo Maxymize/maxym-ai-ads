@@ -16,6 +16,7 @@
 
 <p align="center">
   <a href="#-two-ways-to-follow-this-blueprint">Guided vs Manual</a> ·
+  <a href="#-after-the-plan-execute-it">Execution</a> ·
   <a href="#-overview">Overview</a> ·
   <a href="#-the-5-phases">5 Phases</a> ·
   <a href="#-phase-0--reality-check">Phase 0</a> ·
@@ -94,6 +95,36 @@ Read the rest of this document and run each command yourself, step by step. Same
 </table>
 
 > 💡 **Both paths produce identical results.** Pick guided if you're just getting started; pick manual when you want to fine-tune or learn the underlying commands.
+
+---
+
+## 🚀 After the plan: execute it
+
+This document gives you the **plan**. Once the plan is ready, the companion skill `/ads blueprint-execution` takes you from **plan → launched campaigns → ongoing optimization**, without making you remember anything.
+
+What it does:
+
+- 📂 **Reads your `ADS-Blueprint/` folder** — knows exactly where you are
+- 🔴 **Closes blocking gaps** — pixel missing, landing health <60, compliance — with step-by-step fixes
+- 🛠️ **Pre-launch setup** — tracking, UTM templates, audience uploads, verification checks
+- 🎯 **Campaign build** — click-by-click instructions for Meta, Google, LinkedIn, TikTok, Microsoft, Apple, with your actual copy/budgets/audiences pre-filled
+- 🚀 **Launch day** — activation sequence and the 2h / 24h / 48h observation windows
+- 📅 **Learning phase** — weekly check-ins, "do nothing for 14 days" enforcement
+- 📊 **Bi-weekly optimization** — paste metrics / CSV / screenshot → the skill applies the 3× Kill Rule, the 20% Scaling Rule, and creative fatigue detection automatically, and gives you the exact edit instructions
+
+```shell
+/ads blueprint-execution              # auto-detect phase, show right menu
+/ads blueprint-execution audit        # jump to bi-weekly audit
+/ads blueprint-execution --fresh      # restart from gate check
+```
+
+**Outputs live in `ADS-Blueprint/Execution/`**:
+- `live-dashboard.html` — interactive status, regenerated after every session
+- `EXECUTION-LOG.md` — session-by-session diary of every action
+- `meta-setup-instructions.md`, `google-setup-instructions.md`, etc. — re-readable without re-invoking the skill
+- `live-data/` — where you drop CSV exports from ad platforms
+
+> 💡 **The full loop**: `/ads blueprint` produces the plan. `/ads blueprint-execution` puts it into practice. They're designed to work together — same folder, same experience level, same language.
 
 ---
 

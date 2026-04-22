@@ -1,26 +1,26 @@
-# Integrity Report — v1.0.03 (2026-04-21)
+# Integrity Report — v1.0.04 (2026-04-22)
 
 Automated checks performed before release.
 
 ## Structure
 
-- ✓ Plugin manifest at `.claude-plugin/plugin.json` (version 1.0.03)
-- ✓ Marketplace manifest at `.claude-plugin/marketplace.json` (version 1.0.03)
-- ✓ Orchestrator skill at `skills/ads/SKILL.md`
-- ✓ 31 sub-skills at `skills/ads-*/SKILL.md` (incl. `ads-blueprint` with one-question-at-a-time UX, phase folders, adaptive modes)
+- ✓ Plugin manifest at `.claude-plugin/plugin.json` (version 1.0.04)
+- ✓ Marketplace manifest at `.claude-plugin/marketplace.json` (version 1.0.04)
+- ✓ Orchestrator skill at `skills/ads/SKILL.md` (32 sub-skills referenced)
+- ✓ 32 sub-skills at `skills/ads-*/SKILL.md` (incl. new `ads-blueprint-execution`)
 - ✓ 15 subagents at `agents/*.md`
-- ✓ Blueprint HTML template at `skills/ads-blueprint/assets/report-template.html` (now supports `{{EXPERIENCE_LEVEL}}` and `{{BEGINNER_BANNER}}`)
+- ✓ 2 HTML templates: `skills/ads-blueprint/assets/report-template.html` and `skills/ads-blueprint-execution/assets/live-dashboard-template.html`
 
 ## Lint
 
 - ✓ Every `SKILL.md` has valid YAML frontmatter with `name:` and `description:` fields
-- ✓ `plugin.json` and `marketplace.json` are valid JSON (version bumped to 1.0.03)
-- ✓ HTML template is self-contained (no external CSS/JS dependencies, no CDN)
+- ✓ `plugin.json` and `marketplace.json` are valid JSON (version bumped to 1.0.04)
+- ✓ Both HTML templates are self-contained (no external CSS/JS dependencies, no CDN)
 
 ## Router Coverage
 
-- ✓ All 31 sub-skills referenced by `skills/ads/SKILL.md`
-- ✓ `blueprint` command entry present in Quick Reference and routing table
+- ✓ All 32 sub-skills referenced by `skills/ads/SKILL.md`
+- ✓ Both `blueprint` and `blueprint-execution` command entries present in Quick Reference and routing table
 
 ## Agent Referencing
 
@@ -30,12 +30,12 @@ Automated checks performed before release.
 
 | Artifact | Count |
 |---|---:|
-| Skills under `skills/` (orchestrator + sub-skills) | 32 |
+| Skills under `skills/` (orchestrator + sub-skills) | 33 |
 | Subagents (`agents/*.md`) | 15 |
 | Industry strategy templates (`skills/ads-plan/assets/*.md`) | 12 |
 | RAG reference files (`skills/ads/references/*.md`) | 25 |
 | Research source files (`skills/ads/research-sources/*.md`) | 6 |
-| Blueprint HTML template | 1 |
+| HTML templates | 2 |
 | Python scripts (`scripts/*.py`) | 7 |
 
 ## Branding Sweep
@@ -44,28 +44,25 @@ Automated checks performed before release.
 
 ## Install Script Paths
 
-- ✓ Orchestrator + 30 sub-skills copied via single loop
-- ✓ `.html` assets (blueprint report template) copied alongside `.md`
+- ✓ Orchestrator + 31 sub-skills copied via single loop (both `.md` and `.html` files in assets)
 - ✓ `install.sh` and `uninstall.sh` are executable
+- ✓ Uninstaller cleans up both `ads-blueprint` and `ads-blueprint-execution`
 
 ## Plugin Installability
 
 - ✓ `./install.sh`
 - ✓ `/plugin marketplace add Maxymize/maxym-ai-ads` + `/plugin install maxym-ai-ads@maxym-plugins`
 
-## New in v1.0.03
+## New in v1.0.04
 
-- ✓ 11th intake question: experience level (beginner / intermediate / expert)
-- ✓ Adaptive output logic documented in SKILL.md:
-  - beginner → separate `-Beginner.md` twin file per technical file
-  - intermediate → "📚 In plain English" section appended to each technical file
-  - expert → technical files only (no explainers)
-- ✓ One-question-at-a-time intake pattern with preview + per-question suggestions + echo-back
-- ✓ Phase-folder output structure: `ADS-Blueprint/Phase-N-Name/`
-- ✓ Final deliverables (PDF + HTML + Checklist) at `ADS-Blueprint/` root
-- ✓ HTML template supports `{{EXPERIENCE_LEVEL}}` meta-item and `{{BEGINNER_BANNER}}` contextual banner
-- ✓ README badge "📚 adaptive: beginner | intermediate | expert"
-- ✓ README + BLUEPRINT.md advertise adaptive-by-experience as a distinguishing feature
+- ✓ New skill `ads-blueprint-execution` covering 6 stages: gate_check → pretrack_setup → campaign_build → launch_day → learning_phase → optimization_cycle
+- ✓ State file `EXECUTION-STATE.json` schema documented
+- ✓ Mechanical rule application documented: 3× Kill Rule, 20% Scaling Rule, Learning-Phase Protection, creative fatigue detection
+- ✓ Metric parsing supports paste, CSV, and screenshot-text formats
+- ✓ Live HTML dashboard template with 15+ token substitutions, pulse animation, auto-refresh notice, timeline component, persistent localStorage-free design
+- ✓ Per-platform setup guide files generated during campaign build stage
+- ✓ Execution log appended session-by-session
+- ✓ README + BLUEPRINT.md advertise the closed-loop workflow as a unified story
 
 ## Commit Hygiene
 

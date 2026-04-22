@@ -1,7 +1,7 @@
 {
   "name": "maxym-ai-ads",
-  "version": "1.0.03",
-  "description": "Unified paid advertising skill for Claude Code: strategy, creative, multi-platform audit, and reporting. Ships with /ads blueprint — a guided zero-to-sales workflow with one-question-at-a-time intake, phase-folder output structure, and adaptive documentation (beginner / intermediate / expert modes). Produces a PDF, interactive HTML report, and launch checklist. 31 sub-skills, 15 parallel subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
+  "version": "1.0.04",
+  "description": "Unified paid advertising skill for Claude Code: strategy, creative, multi-platform audit, and reporting. Closed-loop guidance: /ads blueprint produces the plan, /ads blueprint-execution puts it into practice — from gap fixing and pixel installation to click-by-click campaign build, launch day sequencing, and the bi-weekly optimization loop (3× Kill Rule, 20% Scaling Rule, creative fatigue detection). Adaptive output for beginner / intermediate / expert users. 32 sub-skills, 15 parallel subagents, 250+ checks across Google, Meta, LinkedIn, TikTok, Microsoft, YouTube, and Apple Ads.",
   "author": {
     "name": "Maximilian Giurastante",
     "email": "info@maxymizebusiness.com"

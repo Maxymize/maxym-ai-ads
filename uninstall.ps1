@@ -19,9 +19,9 @@ function Main {
         Remove-Item -Path $MainSkill -Recurse -Force
     }
 
-    # Remove sub-skills (30)
+    # Remove sub-skills (31)
     $SubSkills = @(
-        "ads-blueprint",
+        "ads-blueprint","ads-blueprint-execution",
         "ads-strategy","ads-quick","ads-audience","ads-plan","ads-keywords","ads-competitor",
         "ads-copy","ads-hooks","ads-video","ads-creative-brief","ads-creative-audit",
         "ads-funnel","ads-budget","ads-testing","ads-landing",

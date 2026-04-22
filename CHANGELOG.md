@@ -2,6 +2,35 @@
 
 All notable changes to this project are documented here. The format is loosely based on [Keep a Changelog](https://keepachangelog.com/) and this project adheres to semantic versioning where practical.
 
+## [1.0.04] — 2026-04-22
+
+### Added
+- **New guided skill `/ads blueprint-execution`** — the second half of the closed-loop workflow. Reads the existing `ADS-Blueprint/` folder produced by `/ads blueprint` and coaches the user through every remaining step: gate check (close residual P0/P1 blockers), pre-launch tracking setup (pixels, CAPI, GA4, LinkedIn Insight, UTM templates, Consent Mode V2), per-platform campaign build with click-by-click instructions drawn from the blueprint files, launch day activation sequence with 2h/24h/48h check-ins, learning-phase observation (weeks 1-2 "do nothing" rule), and the bi-weekly optimization cycle.
+- **Live metric parsing** — accepts pasted text from ad platform dashboards, CSV exports (placed in `ADS-Blueprint/Execution/live-data/`), or screenshot text. Parses flexibly across Meta / Google / LinkedIn / TikTok / Microsoft column formats.
+- **Mechanical rule application** — 3× Kill Rule, 20% Scaling Rule, Learning-Phase Protection, creative fatigue detection (frequency >3.0, CTR drop >30%) applied on the user's real data with ready-to-execute edit instructions.
+- **Live HTML dashboard** (`ADS-Blueprint/Execution/live-dashboard.html`) — self-contained interactive page showing current stage, KPIs, open blockers, per-platform build status, latest audit decisions, recent session log, and the recommended next action. Regenerated automatically after every session.
+- **Execution log** (`ADS-Blueprint/Execution/EXECUTION-LOG.md`) — dated diary of every action taken (resolved blockers, installed pixels, built campaigns, launched, scaled, killed, refreshed).
+- **Per-platform setup guides** — `meta-setup-instructions.md`, `google-setup-instructions.md`, etc. written during the build stage, so the user can re-read without re-invoking the skill.
+- **`EXECUTION-STATE.json`** — persistent state tracking 6 stages (gate_check → pretrack_setup → campaign_build → launch_day → learning_phase → optimization_cycle) and every decision.
+
+### Changed
+- Sub-skill count: 31 → 32 (added `ads-blueprint-execution`)
+- Router (`skills/ads/SKILL.md`) — new "Guided Experience" entry for `blueprint-execution`; routing table updated; argument-hint extended
+- README — new "Closed-loop workflow: plan → execute" section positioning the two guided skills as a unified story; new badge "🌟 guided: blueprint + execution"
+- `docs/BLUEPRINT-ZERO-TO-SALES.md` — new "After the plan: execute it" section linking to the new skill; navigation links updated
+- Installers (`install.sh`, `install.ps1`) — copy the new skill including its HTML dashboard template; updated usage hints
+- Uninstallers — clean up `ads-blueprint-execution` on uninstall
+
+### Hard rules (new, for the execution skill)
+- NEVER fabricate metrics — if the user hasn't pasted real data, refuse to decide
+- NEVER suggest editing during learning phase unless there's a true emergency
+- NEVER recommend scaling beyond +20% per 3-5 days
+- NEVER recommend killing with <$100 spend OR <50 clicks OR <7 days runtime
+- ALWAYS read `ADS-BLUEPRINT-STATE.json` first to bootstrap context
+- ALWAYS persist `EXECUTION-STATE.json` after every meaningful action
+- ALWAYS regenerate `live-dashboard.html` at session start and after actions
+- RESPECT `intake.experience_level` for output tone (beginner / intermediate / expert — same rule as blueprint skill)
+
 ## [1.0.03] — 2026-04-21
 
 ### Added

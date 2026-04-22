@@ -44,7 +44,7 @@ function Main {
         $Src = "$TempDir\maxym-ai-ads"
 
         # Copy every sub-skill under skills/ (including the 'ads' orchestrator)
-        Write-Host "Installing orchestrator + 30 sub-skills..."
+        Write-Host "Installing orchestrator + 31 sub-skills..."
         Get-ChildItem "$Src\skills" -Directory | ForEach-Object {
             $TargetDir = Join-Path $env:USERPROFILE ".claude\skills\$($_.Name)"
             New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
@@ -101,15 +101,16 @@ function Main {
         Write-Host ""
         Write-Host "  Installed:"
         Write-Host "    - 1 unified /ads orchestrator"
-        Write-Host "    - 30 sub-skills (incl. new /ads blueprint guided experience)"
+        Write-Host "    - 31 sub-skills (incl. /ads blueprint + /ads blueprint-execution)"
         Write-Host "    - 15 subagents (6 audit + 4 creative pipeline + 5 strategy)"
         Write-Host "    - 25 reference files"
         Write-Host "    - 11 industry strategy templates"
-        Write-Host "    - 1 interactive HTML report template"
+        Write-Host "    - 2 interactive HTML templates (blueprint report + execution dashboard)"
         Write-Host ""
         Write-Host "Usage:"
         Write-Host "  1. Start Claude Code:  claude"
-        Write-Host "  2. Try:                /ads blueprint            # GUIDED end-to-end flow"
+        Write-Host "  2. Try:                /ads blueprint              # GUIDED strategy (planning)"
+        Write-Host "                         /ads blueprint-execution    # GUIDED execution (doing)"
         Write-Host "                         /ads quick <url>"
         Write-Host "                         /ads strategy <url>"
         Write-Host "                         /ads audit"

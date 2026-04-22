@@ -33,7 +33,7 @@ main() {
     SRC="${TEMP_DIR}/maxym-ai-ads"
 
     # Copy every sub-skill under skills/ (including the 'ads' orchestrator)
-    echo "→ Installing orchestrator + 30 sub-skills..."
+    echo "→ Installing orchestrator + 31 sub-skills..."
     for skill_dir in "${SRC}/skills"/*/; do
         skill_name=$(basename "${skill_dir}")
         target="${HOME}/.claude/skills/${skill_name}"
@@ -95,15 +95,16 @@ main() {
     echo ""
     echo "  Installed:"
     echo "    • 1 unified /ads orchestrator"
-    echo "    • 30 sub-skills (incl. new /ads blueprint guided experience)"
+    echo "    • 31 sub-skills (incl. /ads blueprint + /ads blueprint-execution)"
     echo "    • 15 subagents (6 audit + 4 creative-pipeline + 5 strategy)"
     echo "    • 25 reference files"
     echo "    • 11 industry strategy templates"
-    echo "    • 1 interactive HTML report template"
+    echo "    • 2 interactive HTML templates (blueprint report + execution dashboard)"
     echo ""
     echo "Usage:"
     echo "  1. Start Claude Code:  claude"
-    echo "  2. Try:                /ads blueprint            ← GUIDED end-to-end flow"
+    echo "  2. Try:                /ads blueprint              ← GUIDED strategy (planning)"
+    echo "                         /ads blueprint-execution    ← GUIDED execution (doing)"
     echo "                         /ads quick <url>"
     echo "                         /ads strategy <url>"
     echo "                         /ads audit"
